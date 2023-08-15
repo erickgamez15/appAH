@@ -35,8 +35,8 @@ struct Inicio: View {
                                     Text(formattedDate)
                                         .bold()
                                     Spacer()
-                                    Button("Ver") {
-                                        viewModel.opcion51Api(date: formattedDate){ data, error in
+                                    Button(action: {
+                                        viewModel.opcion35Api(date: formattedDate){ data, error in
                                             if let error = error {
                                                 print("Error: \(error)")
                                             } else if let data = data {
@@ -45,10 +45,13 @@ struct Inicio: View {
                                                 }
                                             }
                                         }
+                                    }) {
+                                        Image(systemName: "doc.text.magnifyingglass")
+                                        Text("Ver")
                                     }
                                     .bold()
-                                    .padding(50)
-                                    .frame(height: 33)
+                                    .padding(35)
+                                    .frame(height: 32)
                                     .foregroundColor(.white)
                                     .background(Color.red.opacity(0.95))
                                     .cornerRadius(5)
@@ -67,7 +70,7 @@ struct Inicio: View {
                             VStack{
                                 HStack {
                                     Text("Ventas:")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $valueVentas)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
@@ -75,7 +78,7 @@ struct Inicio: View {
                                 
                                 HStack {
                                     Text("Gastos:")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $valueVentas)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
@@ -83,7 +86,7 @@ struct Inicio: View {
                                 
                                 HStack {
                                     Text("Total final:")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $valueVentas)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
@@ -102,49 +105,49 @@ struct Inicio: View {
                             VStack(alignment: .leading){
                                 HStack{
                                     Label("Efectivo: ", systemImage: "dollarsign")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Tarjetas: ", systemImage: "creditcard")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Créditos: ", systemImage: "percent")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Monedas: ", systemImage: "dollarsign.circle")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Transferencia: ", systemImage: "arrow.right.arrow.left")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Cheques: ", systemImage: "doc.text")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Text("Total Entradas: ")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
@@ -164,49 +167,49 @@ struct Inicio: View {
                             VStack(alignment: .leading){
                                 HStack{
                                     Label("Gastos: ", systemImage: "dollarsign")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Devoluciones Cancelaciones: ", systemImage: "arrow.counterclockwise")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Sueldos: ", systemImage: "person.2")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Vales: ", systemImage: "tag")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Importe de Bonificación: ", systemImage: "doc.text")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Label("Suministros: ", systemImage: "cart")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 
                                 HStack{
                                     Text("Total Salidas: ")
-                                        .frame(width: 200, alignment: .leading)
+                                        .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }

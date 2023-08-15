@@ -34,12 +34,15 @@ struct Gastos: View {
                                     Text(formattedDate)
                                         .bold()
                                     Spacer()
-                                    Button("Ver") {
-                                        
+                                    Button(action: {
+                                        print("Hola")
+                                    }) {
+                                        Image(systemName: "doc.text.magnifyingglass")
+                                        Text("Ver")
                                     }
                                     .bold()
-                                    .padding(50)
-                                    .frame(height: 33)
+                                    .padding(34)
+                                    .frame(height: 32)
                                     .foregroundColor(.white)
                                     .background(Color.red.opacity(0.95))
                                     .cornerRadius(5)
