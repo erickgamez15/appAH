@@ -12,12 +12,14 @@ struct Inicio: View {
     @State var valueVentas = "88888888.80"
     @State var value = "88888888.80"
     
+    private var viewModel: ViewModel = ViewModel()
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 10) {
                     Group {
-                        Section(header: Text("Fechas").font(.title).fontWeight(.heavy).foregroundColor(.white).padding(.leading, -180)){
+                        Section(header: Text("Fecha").font(.title).fontWeight(.heavy).foregroundColor(.white).padding(.leading, -180)){
                             VStack{
                                 DatePicker(
                                     "Seleccionar una fecha",
@@ -26,12 +28,23 @@ struct Inicio: View {
                                     displayedComponents: .date
                                 )
                                 
+                                //Contiene la fecha en formato yyyy-MM-dd
+                                let formattedDate = formatDate(date: currentDate)
+                                
                                 HStack {
-                                    Text(formatDate(date: currentDate))
+                                    Text(formattedDate)
                                         .bold()
                                     Spacer()
                                     Button("Ver") {
-                                        
+                                        viewModel.opcion51Api(date: formattedDate){ data, error in
+                                            if let error = error {
+                                                print("Error: \(error)")
+                                            } else if let data = data {
+                                                if let responseString = String(data: data, encoding: .utf8) {
+                                                    print("Response: \(responseString)")
+                                                }
+                                            }
+                                        }
                                     }
                                     .bold()
                                     .padding(50)
@@ -53,7 +66,7 @@ struct Inicio: View {
                         Section(header: Text("Totales").font(.title).fontWeight(.heavy).foregroundColor(.white).padding(.top, 30).padding(.leading, -180)){
                             VStack{
                                 HStack {
-                                    Text("Total ventas del día:")
+                                    Text("Ventas:")
                                         .frame(width: 200, alignment: .leading)
                                     TextField("0", text: $valueVentas)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -61,7 +74,7 @@ struct Inicio: View {
                                 .foregroundColor(.green)
                                 
                                 HStack {
-                                    Text("Gastos y Créditos:")
+                                    Text("Gastos:")
                                         .frame(width: 200, alignment: .leading)
                                     TextField("0", text: $valueVentas)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -81,45 +94,6 @@ struct Inicio: View {
                             .foregroundColor(.black)
                             .background(Color.white)
                             .cornerRadius(20)
-                        }
-                    }
-                    
-                    Group {
-                        Section(header: Text("Ventas del día").font(.title).fontWeight(.heavy).foregroundColor(.white).padding(.top, 30).padding(.leading, -180)){
-                            VStack {
-                                HStack{
-                                    Label("Efectivo", systemImage: "dollarsign")
-                                        .frame(width: 200, alignment: .leading)
-                                    TextField("0", text: $value)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                                
-                                HStack{
-                                    Label("Tarjeta", systemImage: "creditcard")
-                                        .frame(width: 200, alignment: .leading)
-                                    TextField("0", text: $value)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                                
-                                HStack{
-                                    Label("Créditos:", systemImage: "percent")
-                                        .frame(width: 200, alignment: .leading)
-                                    TextField("0", text: $value)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                                
-                                HStack{
-                                    Label("Monedas:", systemImage: "dollarsign.circle")
-                                     .frame(width: 200, alignment: .leading)
-                                    TextField("0", text: $value)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                             .padding()
-                             .padding(.horizontal)
-                             .foregroundColor(.black)
-                             .background(Color.white)
-                             .cornerRadius(20)
                         }
                     }
                     
@@ -247,7 +221,7 @@ struct Inicio: View {
                         }
                     }
                     
-                    Group {
+                    /*Group {
                         Section(header: Text("Otros Pagos").font(.title).fontWeight(.heavy).foregroundColor(.white).padding(.top, 30).padding(.leading, -180)){
                             VStack{
                                 HStack{
@@ -272,7 +246,7 @@ struct Inicio: View {
                             .background(Color.white)
                             .cornerRadius(20)
                         }
-                    }
+                    }*/
                     
                     VStack{
                         
@@ -309,51 +283,6 @@ struct Inicio: View {
         newDateFormatter.dateFormat = "yyyy-MM-dd"
         return newDateFormatter.string(from: date)
     }
-    
-    //Funcion para mandar peticiones a la API
-    /*private func getData(fecha: Date, opcion: String){
-        guard let url = URL(string: "http://hidalgo.no-ip.info:5610/hidalgoapi/production/Panel.php") else {
-            return
-        }
-        
-        // Datos a enviar en el formulario
-        let formattedDate = formatDate(date: fecha)
-        
-        var components = URLComponents()
-            components.queryItems = [
-                URLQueryItem(name: "fecha", value: formattedDate),
-                URLQueryItem(name: "numero", value: opcion)
-            ]
-        
-        // Crear la solicitud HTTP POST
-           var request = URLRequest(url: url)
-           request.httpMethod = "POST"
-           request.httpBody = components.query?.data(using: .utf8)
-           request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        
-        // Realizar la solicitud
-            let session = URLSession.shared
-            let task = session.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    return
-                }
-
-                guard let data = data else {
-                    return
-                }
-
-                // Parsear la respuesta JSON
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        
-                    }
-                } catch {
-                    
-                }
-            }
-
-            task.resume()
-    }*/
 }
 
 struct Inicio_Previews: PreviewProvider {

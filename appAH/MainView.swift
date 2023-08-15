@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     var body: some View {
         TabView{
             Inicio()
@@ -17,10 +17,10 @@ struct ContentView: View {
             }
             .edgesIgnoringSafeArea(.top)
             
-            Dinero()
+            Gastos()
             .tabItem{
                 Image(systemName: "dollarsign.circle.fill")
-                Text("Dinero")
+                Text("Gastos")
             }
             .edgesIgnoringSafeArea(.top)
             
@@ -31,14 +31,13 @@ struct ContentView: View {
             }
             .background(Color.white)
             .edgesIgnoringSafeArea(.top)
-            
         }
         .accentColor(.red)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
     }
 }
