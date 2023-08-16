@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Inicio: View {
+    
     @State var currentDate: Date = Date()
     @State var valueVentas = "88888888.80"
     @State var value = "88888888.80"
@@ -36,7 +37,7 @@ struct Inicio: View {
                                         .bold()
                                     Spacer()
                                     Button(action: {
-                                        viewModel.opcion35Api(date: formattedDate){ data, error in
+                                        viewModel.opcion51Api(date: formattedDate){ data, error in
                                             if let error = error {
                                                 print("Error: \(error)")
                                             } else if let data = data {
@@ -90,11 +91,11 @@ struct Inicio: View {
                                     TextField("0", text: $valueVentas)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
+                                .foregroundColor(.black)
                             }
+                            .bold()
                             .padding()
                             .padding(.horizontal)
-                            .bold()
-                            .foregroundColor(.black)
                             .background(Color.white)
                             .cornerRadius(20)
                         }
@@ -140,6 +141,13 @@ struct Inicio: View {
                                 
                                 HStack{
                                     Label("Cheques: ", systemImage: "doc.text")
+                                        .frame(width: 155, alignment: .leading)
+                                    TextField("0", text: $value)
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
+                                
+                                HStack{
+                                    Label("Otros", systemImage: "questionmark.circle")
                                         .frame(width: 155, alignment: .leading)
                                     TextField("0", text: $value)
                                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -224,31 +232,15 @@ struct Inicio: View {
                         }
                     }
                     
-                    /*Group {
-                        Section(header: Text("Otros Pagos").font(.title).fontWeight(.heavy).foregroundColor(.white).padding(.top, 30).padding(.leading, -180)){
-                            VStack{
-                                HStack{
-                                    Text("Pagos de notas de otras fechas: ")
-                                        .frame(width: 200, alignment: .leading)
-                                    TextField("0", text: $value)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                                .bold()
-                                .foregroundColor(.blue)
-                                
-                                HStack{
-                                    Label("Otros", systemImage: "questionmark.circle")
-                                        .frame(width: 200, alignment: .leading)
-                                    TextField("0", text: $value)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                            .padding()
-                            .padding(.horizontal)
-                            .foregroundColor(.black)
-                            .background(Color.white)
-                            .cornerRadius(20)
-                        }
+                    /*
+                     HStack{
+                         Text("Pagos de notas de otras fechas: ")
+                             .frame(width: 200, alignment: .leading)
+                         TextField("0", text: $value)
+                             .frame(maxWidth: .infinity, alignment: .trailing)
+                     }
+                     .bold()
+                     .foregroundColor(.blue)
                     }*/
                     
                     VStack{

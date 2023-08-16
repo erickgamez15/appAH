@@ -8,29 +8,32 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @State private var selectedTab: Int = 0
+    
     var body: some View {
-        TabView{
+        
+        TabView(selection: $selectedTab) {
             Inicio()
-            .tabItem{
-                Image(systemName: "house.circle.fill")
-                Text("Inicio")
-            }
-            .edgesIgnoringSafeArea(.top)
+                .tabItem {
+                    Label("Inicio", systemImage: "house.circle.fill")
+                }
+                .edgesIgnoringSafeArea(.top)
+                .tag(0)
             
             Gastos()
-            .tabItem{
-                Image(systemName: "dollarsign.circle.fill")
-                Text("Gastos")
-            }
-            .edgesIgnoringSafeArea(.top)
+                .tabItem {
+                    Label("Gastos", systemImage: "dollarsign.circle.fill")
+                }
+                .edgesIgnoringSafeArea(.top)
+                .tag(1)
             
             Transacciones()
-            .tabItem{
-                Image(systemName: "arrow.right.arrow.left.circle.fill")
-                Text("Traspasos")
-            }
-            .background(Color.white)
-            .edgesIgnoringSafeArea(.top)
+                .tabItem {
+                    Label("Traspasos", systemImage: "arrow.right.arrow.left.circle.fill")
+                }
+                .edgesIgnoringSafeArea(.top)
+                .tag(2)
         }
         .accentColor(.red)
     }
