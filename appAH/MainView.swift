@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  appAH
 //
 //  Created by Erick Gámez Sánchez on 15/08/23.
@@ -28,7 +28,7 @@ struct MainView: View {
                 .edgesIgnoringSafeArea(.top)
                 .tag(1)
             
-            Transacciones()
+            Traspasos()
                 .tabItem {
                     Label("Traspasos", systemImage: "arrow.right.arrow.left.circle.fill")
                 }
