@@ -6,9 +6,20 @@
 //
 
 import Foundation
+import SwiftUI
 
 //Clase que manda a llamar a la API para las peticiones
 final class ViewModel{
+    
+    
+    struct desgloceData: Decodable{
+        var idMo: String
+        var fecha: String
+        var tipooper: String
+        var totalcajero: String
+    }
+    
+    @State private var desgloce: desgloceData?
     
     // Desgloce de Efectivo, Tarjetas, etc.
     func opcion51Api(date: String, completion: @escaping (Data?, Error?) -> Void) {
@@ -60,9 +71,15 @@ final class ViewModel{
         request.httpBody = postData
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
+            guard let data = data else { return }
+            /*if let error = error {
                 completion(nil, error)
                 return
+            }*/
+            if let decodeData = try? JSONDecoder().decode(desgloceData.self, from: data) {
+                DispatchQueue.main.async {
+                    self.desgloce = decodeData
+                }
             }
             completion(data, nil)
         }

@@ -18,26 +18,32 @@ struct CardsTraspasos: View {
                     HStack{
                         Text("Nota: \(text)")
                     }
-                    .padding()
-                    .font(.body)
-                    .fontWeight(.semibold)
                     .foregroundColor(.black)
                     
                     HStack {
                         Text("Solicita: \(text)")
                     }
-                    .padding()
-                    .font(.body)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
+                    HStack{
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: "chevron.down")
+                        }
+                        .bold()
+                        .padding(.top, 1)
+                        .foregroundColor(.red)
+                        .cornerRadius(5)
+                    }
                 }
                 .padding()
-                .background(
-                    LinearGradient(gradient: Gradient(colors: [Color.purple, Color.pink, Color.red, Color.orange, Color.yellow]), startPoint: .bottomLeading, endPoint: .topTrailing)
-                )
+                .padding(.horizontal)
+                .font(.body)
+                .fontWeight(.light)
+                .background(Color.white)
                 .cornerRadius(20)
             }
-            .shadow(color: .black.opacity(0.3), radius: 5)
+            .padding(.top)
         }
     }
 }

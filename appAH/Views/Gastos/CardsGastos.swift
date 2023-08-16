@@ -31,7 +31,7 @@ struct CardsGastos: View {
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 5)
-                    .foregroundColor(.orange)
+                    .foregroundColor(.cyan)
                     
                     HStack {
                         Text("Importe final: ")
