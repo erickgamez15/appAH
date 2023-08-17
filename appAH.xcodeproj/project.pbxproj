@@ -21,6 +21,7 @@
 		88929A2F2A8D2B66001507E1 /* Egresos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A2E2A8D2B66001507E1 /* Egresos.swift */; };
 		88929A312A8D4365001507E1 /* CardsGastos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A302A8D4365001507E1 /* CardsGastos.swift */; };
 		88929A332A8D4552001507E1 /* CardsTraspasos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A322A8D4552001507E1 /* CardsTraspasos.swift */; };
+		88ADE0792A8EAC7A006BFA3A /* DesgloceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ADE0782A8EAC7A006BFA3A /* DesgloceData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		88929A2E2A8D2B66001507E1 /* Egresos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Egresos.swift; sourceTree = "<group>"; };
 		88929A302A8D4365001507E1 /* CardsGastos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsGastos.swift; sourceTree = "<group>"; };
 		88929A322A8D4552001507E1 /* CardsTraspasos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTraspasos.swift; sourceTree = "<group>"; };
+		88ADE0782A8EAC7A006BFA3A /* DesgloceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesgloceData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,17 +136,18 @@
 		88929A382A8D7BFA001507E1 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				88929A392A8D7ECB001507E1 /* Data */,
+				88ADE0762A8EAC4E006BFA3A /* Models */,
 				888749562A8BE20F00761745 /* ViewModel.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		88929A392A8D7ECB001507E1 /* Data */ = {
+		88ADE0762A8EAC4E006BFA3A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				88ADE0782A8EAC7A006BFA3A /* DesgloceData.swift */,
 			);
-			path = Data;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +230,7 @@
 				88929A2B2A8D2AA1001507E1 /* Totales.swift in Sources */,
 				88929A332A8D4552001507E1 /* CardsTraspasos.swift in Sources */,
 				88929A292A8D296A001507E1 /* Fecha.swift in Sources */,
+				88ADE0792A8EAC7A006BFA3A /* DesgloceData.swift in Sources */,
 				888749572A8BE20F00761745 /* ViewModel.swift in Sources */,
 				8889169A2A8BDA51004D0D2F /* Inicio.swift in Sources */,
 			);
