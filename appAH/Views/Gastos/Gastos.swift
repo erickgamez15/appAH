@@ -13,6 +13,7 @@ struct Gastos: View {
     @State var currentDate: Date = Date()
     @State var fecha: Fecha = Fecha()
     @State var modelView: ViewModel = ViewModel()
+    @State var formattedDate: String = "yyyy-MM-dd"
     
     @State var valueVentas = "8888888.88"
     @State var text = "Compra de alimentos Miércoles y Jueves"
@@ -39,8 +40,10 @@ struct Gastos: View {
                                     displayedComponents: .date
                                 )
                                 
-                                //Contiene la fecha en formatio yyyy-MM-dd
-                                let formattedDate = fecha.formatDate(date: currentDate)
+                                //Contiene la fecha en formato yyyy-MM-dd
+                                .onChange(of: currentDate) { newValue in
+                                    formattedDate = fecha.formatDate(date: newValue)
+                                }
                                 
                                 HStack {
                                     Text(formattedDate)

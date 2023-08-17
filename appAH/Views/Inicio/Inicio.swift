@@ -12,6 +12,7 @@ struct Inicio: View {
     @State var currentDate: Date = Date()
     @State var fecha: Fecha = Fecha()
     @State var modelView: ViewModel = ViewModel()
+    @State var formattedDate: String = "yyyy-MM-dd"
     
     var body: some View {
         NavigationView {
@@ -35,15 +36,17 @@ struct Inicio: View {
                                     displayedComponents: .date
                                 )
                                 
-                                //Contiene la fecha en formatio yyyy-MM-dd
-                                let formattedDate = fecha.formatDate(date: currentDate)
+                                //Contiene la fecha en formato yyyy-MM-dd
+                                .onChange(of: currentDate) { newValue in
+                                    formattedDate = fecha.formatDate(date: newValue)
+                                }
                                 
                                 HStack {
                                     Text(formattedDate)
                                         .bold()
                                     Spacer()
                                     Button(action: {
-                                        modelView.opcion51Api(date: formattedDate){ response, error in
+                                        modelView.opcion35Api(date: formattedDate){ response, error in
                                             if let error = error {
                                                 print("Error: \(error)")
                                             } else if let response = response {

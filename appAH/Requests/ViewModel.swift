@@ -72,14 +72,9 @@ final class ViewModel{
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else { return }
-            /*if let error = error {
+            if let error = error {
                 completion(nil, error)
                 return
-            }*/
-            if let decodeData = try? JSONDecoder().decode(desgloceData.self, from: data) {
-                DispatchQueue.main.async {
-                    self.desgloce = decodeData
-                }
             }
             completion(data, nil)
         }

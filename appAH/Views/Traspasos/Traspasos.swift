@@ -13,6 +13,7 @@ struct Traspasos: View {
     @State var currentDate: Date = Date()
     @State var fecha: Fecha = Fecha()
     @State var modelView: ViewModel = ViewModel()
+    @State var formattedDate: String = "yyyy-MM-dd"
     
     var body: some View {
         NavigationView {
@@ -36,8 +37,10 @@ struct Traspasos: View {
                                     displayedComponents: .date
                                 )
                                 
-                                //Contiene la fecha en formatio yyyy-MM-dd
-                                let formattedDate = fecha.formatDate(date: currentDate)
+                                //Contiene la fecha en formato yyyy-MM-dd
+                                .onChange(of: currentDate) { newValue in
+                                    formattedDate = fecha.formatDate(date: newValue)
+                                }
                                 
                                 HStack {
                                     Text(formattedDate)
