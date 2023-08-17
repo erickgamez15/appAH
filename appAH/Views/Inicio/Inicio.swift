@@ -18,7 +18,15 @@ struct Inicio: View {
             ScrollView {
                 VStack {
                     Group{
-                        Section(header: Text("Fecha").font(.title).fontWeight(.semibold).foregroundColor(.white).padding(.leading, -180)){
+                        Section(
+                            header: Text("Fecha")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding(.leading)
+                                .padding(.bottom, 5.0)
+                        ){
                             VStack{
                                 DatePicker(
                                     "Seleccionar una fecha",

@@ -19,7 +19,15 @@ struct Traspasos: View {
             ScrollView {
                 VStack {
                     Group{
-                        Section(header: Text("Fecha").font(.title).fontWeight(.semibold).foregroundColor(.white).padding(.leading, -180)){
+                        Section(
+                            header: Text("Fecha")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding(.leading)
+                                .padding(.bottom, 5.0)
+                        ){
                             VStack{
                                 DatePicker(
                                     "Seleccionar una fecha",
@@ -65,8 +73,21 @@ struct Traspasos: View {
                         }
                     }
                     
-                    //Cards de Traspasos
-                    CardsTraspasos()
+                    Group{
+                        Section(
+                            header: Text("Descripción")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding(.leading)
+                                .padding(.bottom, 5.0)
+                                .padding(.top, 20)
+                        ){
+                            //Cards de Traspasos
+                            CardsTraspasos()
+                        }
+                    }
                     
                     VStack{
                         

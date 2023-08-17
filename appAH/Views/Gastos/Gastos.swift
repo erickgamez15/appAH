@@ -22,7 +22,15 @@ struct Gastos: View {
             ScrollView {
                 VStack {
                     Group{
-                        Section(header: Text("Fecha").font(.title).fontWeight(.semibold).foregroundColor(.white).padding(.leading, -180)){
+                        Section(
+                            header: Text("Fecha")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding(.leading)
+                                .padding(.bottom, 5.0)
+                        ){
                             VStack{
                                 DatePicker(
                                     "Seleccionar una fecha",
@@ -74,7 +82,7 @@ struct Gastos: View {
                             HStack{
                                 Text("Total: $\(valueVentas)")
                             }
-                            .padding(.vertical, 30)
+                            .padding(.vertical, 25)
                             .foregroundColor(.white)
                             .font(.title2)
                             .fontWeight(.heavy)

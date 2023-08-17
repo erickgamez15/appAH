@@ -14,7 +14,16 @@ struct Egresos: View {
     var body: some View {
         
         Group{
-            Section(header: Text("Salidas").font(.title).fontWeight(.semibold).foregroundColor(.white).padding(.top, 30).padding(.leading, -180)){
+            Section(
+                header: Text("Salidas")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding(.leading)
+                    .padding(.bottom, 5.0)
+                    .padding(.top, 30)
+            ){
                 VStack(alignment: .leading){
                     HStack{
                         Label("Gastos: ", systemImage: "dollarsign")
@@ -65,12 +74,14 @@ struct Egresos: View {
                     }
                     .padding(.bottom, 10)
                     
+                    Divider() //Linea divisora
+                    
                     HStack{
                         Text("Total Salidas: ")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(.bottom, 10)
+                    .padding(.top, 10)
                     .bold()
                     .foregroundColor(.red)
                 }

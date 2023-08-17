@@ -14,69 +14,81 @@ struct Ingresos: View {
     var body: some View {
         
         Group{
-            Section(header: Text("Entradas").font(.title).fontWeight(.semibold).foregroundColor(.white).padding(.top, 30).padding(.leading, -180)){
+            Section(
+                header: Text("Entradas")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding(.leading)
+                    .padding(.bottom, 5.0)
+                    .padding(.top, 30)
+            ){
                 VStack(){
                     HStack{
                         Label("Efectivo: ", systemImage: "dollarsign")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(.bottom, 10)
+                    .padding(.vertical, 5)
                     
                     HStack{
                         Label("Tarjetas: ", systemImage: "creditcard")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(.bottom, 10)
+                    .padding(.vertical, 5)
                     
                     HStack{
                         Label("Créditos: ", systemImage: "percent")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(.bottom, 10)
+                    .padding(.vertical, 5)
                     
                     HStack{
                         Label("Monedas: ", systemImage: "dollarsign.circle")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(.bottom, 10)
+                    .padding(.vertical, 5)
                     
                     HStack{
                         Label("Transferencia: ", systemImage: "arrow.right.arrow.left")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(.bottom, 10)
+                    .padding(.vertical, 5)
                     
                     HStack{
                         Label("Cheques: ", systemImage: "doc.text")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(.bottom, 10)
+                    .padding(.vertical, 5)
                     
                     HStack{
                         Label("Otros: ", systemImage: "questionmark.circle")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(.bottom, 10)
+                    .padding(.vertical, 5)
                     
                     HStack{
                         Label("Pagos de notas de otras fechas: ", systemImage: "calendar")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(.bottom, 10)
+                    .padding(.vertical, 5)
+                    
+                    Divider()
                     
                     HStack{
                         Text("Total Entradas: ")
                         Text(value)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
+                    .padding(.top, 10)
                     .bold()
                     .foregroundColor(.green)
                 }
