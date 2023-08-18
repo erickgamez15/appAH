@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Vista que contiene el desgloce de los gastos
 struct Egresos: View {
     
     @State var value = "88888888.80"
@@ -24,7 +25,7 @@ struct Egresos: View {
                     .padding(.bottom, 5.0)
                     .padding(.top, 30)
             ){
-                VStack(alignment: .leading){
+                VStack{
                     HStack{
                         Label("Gastos: ", systemImage: "dollarsign")
                         Text(value)
@@ -84,14 +85,14 @@ struct Egresos: View {
                     .padding(.top, 10)
                     .bold()
                     .foregroundColor(.red)
-                }
+                }//End VStack
                 .padding()
                 .font(.body)
                 .fontWeight(.light)
                 .foregroundColor(.black)
                 .background(Color.white)
                 .cornerRadius(20)
-            }
-        }
-    }
-}
+            }//End Section
+        }//End Group
+    }//End body
+}//End View

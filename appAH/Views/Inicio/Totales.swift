@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Vista que muestra los totales
 struct Totales: View {
     
     @State var valueVentas = "88888888.80"
@@ -23,6 +24,7 @@ struct Totales: View {
                     .padding(.bottom, 5.0)
                     .padding(.top, 20)
             ){
+                //VStack acomoda los elementos de manera vertical en una vista, miestras que HStack de manera horizontal
                 VStack{
                     HStack {
                         Text("Ventas: ")
@@ -58,7 +60,7 @@ struct Totales: View {
                 .padding(.horizontal)
                 .background(Color.white)
                 .cornerRadius(20)
-            }
-        }
-    }
-}
+            }//End Section
+        }//End Group
+    }//End body
+}//End View

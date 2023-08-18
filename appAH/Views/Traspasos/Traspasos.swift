@@ -13,6 +13,8 @@ struct Traspasos: View {
     @State var currentDate: Date = Date()
     @State var fecha: Fecha = Fecha()
     @State var modelView: ViewModel = ViewModel()
+    
+    //Variable que indica el valor por defecto que se muestra si no se ha seleccionado una fecha
     @State var formattedDate: String = "yyyy-MM-dd"
     
     var body: some View {
@@ -47,7 +49,7 @@ struct Traspasos: View {
                                         .bold()
                                     Spacer()
                                     Button(action: {
-                                        modelView.opcion51Api(date: formattedDate){ response, error in
+                                        ViewModel.opcion46Api(date: formattedDate){ response, error in
                                             if let error = error {
                                                 print("Error: \(error)")
                                             } else if let response = response {

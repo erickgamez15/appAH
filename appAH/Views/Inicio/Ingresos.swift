@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Vista que muestra el desgloce de la Entradas
 struct Ingresos: View {
     
     @State var value = "88888888.80"
@@ -24,7 +25,7 @@ struct Ingresos: View {
                     .padding(.bottom, 5.0)
                     .padding(.top, 30)
             ){
-                VStack(){
+                VStack{
                     HStack{
                         Label("Efectivo: ", systemImage: "dollarsign")
                         Text(value)
@@ -91,14 +92,14 @@ struct Ingresos: View {
                     .padding(.top, 10)
                     .bold()
                     .foregroundColor(.green)
-                }
+                }//End VStack
                 .padding()
                 .font(.body)
                 .fontWeight(.light)
                 .foregroundColor(.black)
                 .background(Color.white)
                 .cornerRadius(20)
-            }
-        }
-    }
-}
+            }//End Section
+        }//End Group
+    }//End body
+}//End View

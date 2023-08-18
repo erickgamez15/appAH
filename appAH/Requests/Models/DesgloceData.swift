@@ -8,8 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct Desgloce: Decodable, Identifiable{
-    var id: Int
+//Model para los datos provenientes de la api en la opcion 51
+struct Desgloce: Decodable{
+    //var id: Int
     var idMo: String
     var fecha: String
     var tipooper: String

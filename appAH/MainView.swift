@@ -13,12 +13,15 @@ struct MainView: View {
     
     var body: some View {
         
+        //TabView da el diseño a la vista principal de la aplicación
         TabView(selection: $selectedTab) {
+            //Vista principal de Inicio
             Inicio()
                 .tabItem {
                     Label("Inicio", systemImage: "house.circle.fill")
                 }
                 .edgesIgnoringSafeArea(.top)
+            //Indica la posición del elemento en la parte inferior de la pantalla
                 .tag(0)
             
             Gastos()
@@ -35,6 +38,7 @@ struct MainView: View {
                 .edgesIgnoringSafeArea(.top)
                 .tag(2)
         }
+        //Otorga color al elemento cuando está seleccionado
         .accentColor(.red)
     }
 }
