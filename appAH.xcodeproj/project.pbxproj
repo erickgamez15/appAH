@@ -19,7 +19,8 @@
 		888D49002A8FEBDB0057CC8B /* TotalVentasData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D48FF2A8FEBDB0057CC8B /* TotalVentasData.swift */; };
 		888D49022A8FF4060057CC8B /* TraspasosData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49012A8FF4060057CC8B /* TraspasosData.swift */; };
 		888D49042A9015F40057CC8B /* DeliciasData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49032A9015F40057CC8B /* DeliciasData.swift */; };
-		888D49062A9019E40057CC8B /* ViewModelDelicias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49052A9019E40057CC8B /* ViewModelDelicias.swift */; };
+		888D490A2A9027CC0057CC8B /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49092A9027CC0057CC8B /* ApiManager.swift */; };
+		888D490C2A9027DA0057CC8B /* ApiManagerDelicias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D490B2A9027DA0057CC8B /* ApiManagerDelicias.swift */; };
 		88929A292A8D296A001507E1 /* Fecha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A282A8D296A001507E1 /* Fecha.swift */; };
 		88929A2B2A8D2AA1001507E1 /* Totales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A2A2A8D2AA1001507E1 /* Totales.swift */; };
 		88929A2D2A8D2B06001507E1 /* Ingresos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A2C2A8D2B06001507E1 /* Ingresos.swift */; };
@@ -44,7 +45,8 @@
 		888D48FF2A8FEBDB0057CC8B /* TotalVentasData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalVentasData.swift; sourceTree = "<group>"; };
 		888D49012A8FF4060057CC8B /* TraspasosData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraspasosData.swift; sourceTree = "<group>"; };
 		888D49032A9015F40057CC8B /* DeliciasData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliciasData.swift; sourceTree = "<group>"; };
-		888D49052A9019E40057CC8B /* ViewModelDelicias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDelicias.swift; sourceTree = "<group>"; };
+		888D49092A9027CC0057CC8B /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		888D490B2A9027DA0057CC8B /* ApiManagerDelicias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagerDelicias.swift; sourceTree = "<group>"; };
 		88929A282A8D296A001507E1 /* Fecha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fecha.swift; sourceTree = "<group>"; };
 		88929A2A2A8D2AA1001507E1 /* Totales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Totales.swift; sourceTree = "<group>"; };
 		88929A2C2A8D2B06001507E1 /* Ingresos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingresos.swift; sourceTree = "<group>"; };
@@ -103,6 +105,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		888D49082A90278D0057CC8B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				888D49092A9027CC0057CC8B /* ApiManager.swift */,
+				888D490B2A9027DA0057CC8B /* ApiManagerDelicias.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		88929A342A8D7137001507E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,9 +157,9 @@
 		88929A382A8D7BFA001507E1 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				888D49082A90278D0057CC8B /* Manager */,
 				88ADE0762A8EAC4E006BFA3A /* Models */,
 				888749562A8BE20F00761745 /* ViewModel.swift */,
-				888D49052A9019E40057CC8B /* ViewModelDelicias.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -237,7 +248,6 @@
 			files = (
 				88929A2F2A8D2B66001507E1 /* Egresos.swift in Sources */,
 				8887495A2A8C06DF00761745 /* MainView.swift in Sources */,
-				888D49062A9019E40057CC8B /* ViewModelDelicias.swift in Sources */,
 				888D48FE2A8FE67C0057CC8B /* GastosData.swift in Sources */,
 				8889169E2A8BDA66004D0D2F /* Traspasos.swift in Sources */,
 				8889168C2A8BDA33004D0D2F /* appAHApp.swift in Sources */,
@@ -249,6 +259,8 @@
 				888D49042A9015F40057CC8B /* DeliciasData.swift in Sources */,
 				88929A332A8D4552001507E1 /* CardsTraspasos.swift in Sources */,
 				88929A292A8D296A001507E1 /* Fecha.swift in Sources */,
+				888D490C2A9027DA0057CC8B /* ApiManagerDelicias.swift in Sources */,
+				888D490A2A9027CC0057CC8B /* ApiManager.swift in Sources */,
 				88ADE0792A8EAC7A006BFA3A /* DesgloceData.swift in Sources */,
 				888D49002A8FEBDB0057CC8B /* TotalVentasData.swift in Sources */,
 				888749572A8BE20F00761745 /* ViewModel.swift in Sources */,

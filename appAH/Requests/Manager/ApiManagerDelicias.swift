@@ -1,14 +1,13 @@
 //
-//  ViewModelDelicias.swift
+//  ApiManagerDelicias.swift
 //  appAH
 //
 //  Created by Erick Gámez Sánchez on 18/08/23.
 //
 
 import Foundation
-import SwiftUI
 
-struct APIManagerDelcias{
+class APIManagerDelicias{
     
     //URL de la API Delicias
     static let deliciasURL = "http://hidalgo.no-ip.info:5610/delicias/production/Panel002.php"
@@ -50,7 +49,7 @@ struct APIManagerDelcias{
         
         let parameters = "opcion=100&fecha=\(date)"
         
-        APIManagerDelcias.requestDataDelicias(withParameters: parameters) { result in
+        APIManagerDelicias.requestDataDelicias(withParameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {
@@ -66,17 +65,5 @@ struct APIManagerDelcias{
                 print("Error: \(error)")
             }
         }
-    }
-}
-
-final class ViewModelDelicas{
-    
-    static func requestDeliciasAPI(date: String, completion: @escaping (Data?, Error?) -> Void) {
-        APIManagerDelcias.requestDeliciasAPI(date: date, completion: completion)
-    }
-    
-    // Ventas Delicias
-    static func opcion100Api(date: String, completion: @escaping (Data?, Error?) -> Void) {
-        requestDeliciasAPI(date: date, completion: completion)
     }
 }
