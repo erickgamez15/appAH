@@ -18,6 +18,8 @@
 		888D48FE2A8FE67C0057CC8B /* GastosData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D48FD2A8FE67C0057CC8B /* GastosData.swift */; };
 		888D49002A8FEBDB0057CC8B /* TotalVentasData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D48FF2A8FEBDB0057CC8B /* TotalVentasData.swift */; };
 		888D49022A8FF4060057CC8B /* TraspasosData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49012A8FF4060057CC8B /* TraspasosData.swift */; };
+		888D49042A9015F40057CC8B /* DeliciasData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49032A9015F40057CC8B /* DeliciasData.swift */; };
+		888D49062A9019E40057CC8B /* ViewModelDelicias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49052A9019E40057CC8B /* ViewModelDelicias.swift */; };
 		88929A292A8D296A001507E1 /* Fecha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A282A8D296A001507E1 /* Fecha.swift */; };
 		88929A2B2A8D2AA1001507E1 /* Totales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A2A2A8D2AA1001507E1 /* Totales.swift */; };
 		88929A2D2A8D2B06001507E1 /* Ingresos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A2C2A8D2B06001507E1 /* Ingresos.swift */; };
@@ -41,6 +43,8 @@
 		888D48FD2A8FE67C0057CC8B /* GastosData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GastosData.swift; sourceTree = "<group>"; };
 		888D48FF2A8FEBDB0057CC8B /* TotalVentasData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalVentasData.swift; sourceTree = "<group>"; };
 		888D49012A8FF4060057CC8B /* TraspasosData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraspasosData.swift; sourceTree = "<group>"; };
+		888D49032A9015F40057CC8B /* DeliciasData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliciasData.swift; sourceTree = "<group>"; };
+		888D49052A9019E40057CC8B /* ViewModelDelicias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDelicias.swift; sourceTree = "<group>"; };
 		88929A282A8D296A001507E1 /* Fecha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fecha.swift; sourceTree = "<group>"; };
 		88929A2A2A8D2AA1001507E1 /* Totales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Totales.swift; sourceTree = "<group>"; };
 		88929A2C2A8D2B06001507E1 /* Ingresos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingresos.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			children = (
 				88ADE0762A8EAC4E006BFA3A /* Models */,
 				888749562A8BE20F00761745 /* ViewModel.swift */,
+				888D49052A9019E40057CC8B /* ViewModelDelicias.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 				888D48FD2A8FE67C0057CC8B /* GastosData.swift */,
 				888D48FF2A8FEBDB0057CC8B /* TotalVentasData.swift */,
 				888D49012A8FF4060057CC8B /* TraspasosData.swift */,
+				888D49032A9015F40057CC8B /* DeliciasData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 			files = (
 				88929A2F2A8D2B66001507E1 /* Egresos.swift in Sources */,
 				8887495A2A8C06DF00761745 /* MainView.swift in Sources */,
+				888D49062A9019E40057CC8B /* ViewModelDelicias.swift in Sources */,
 				888D48FE2A8FE67C0057CC8B /* GastosData.swift in Sources */,
 				8889169E2A8BDA66004D0D2F /* Traspasos.swift in Sources */,
 				8889168C2A8BDA33004D0D2F /* appAHApp.swift in Sources */,
@@ -239,6 +246,7 @@
 				8887495C2A8C0B1000761745 /* Gastos.swift in Sources */,
 				888D49022A8FF4060057CC8B /* TraspasosData.swift in Sources */,
 				88929A2B2A8D2AA1001507E1 /* Totales.swift in Sources */,
+				888D49042A9015F40057CC8B /* DeliciasData.swift in Sources */,
 				88929A332A8D4552001507E1 /* CardsTraspasos.swift in Sources */,
 				88929A292A8D296A001507E1 /* Fecha.swift in Sources */,
 				88ADE0792A8EAC7A006BFA3A /* DesgloceData.swift in Sources */,

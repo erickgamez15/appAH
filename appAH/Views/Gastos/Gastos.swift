@@ -12,7 +12,6 @@ struct Gastos: View {
     //Instancias
     @State var currentDate: Date = Date()
     @State var fecha: Fecha = Fecha()
-   // @State var modelView: ViewModel = ViewModel()
     
     //Variable que indica el valor por defecto que se muestra si no se ha seleccionado una fecha
     @State var formattedDate: String = "yyyy-MM-dd"
