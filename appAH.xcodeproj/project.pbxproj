@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881A4A1D2A9113160081F77D /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A4A1C2A9113160081F77D /* ModelData.swift */; };
 		888749572A8BE20F00761745 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888749562A8BE20F00761745 /* ViewModel.swift */; };
 		8887495A2A8C06DF00761745 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888749592A8C06DF00761745 /* MainView.swift */; };
 		8887495C2A8C0B1000761745 /* Gastos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887495B2A8C0B1000761745 /* Gastos.swift */; };
@@ -15,10 +16,6 @@
 		888916932A8BDA34004D0D2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 888916922A8BDA34004D0D2F /* Preview Assets.xcassets */; };
 		8889169A2A8BDA51004D0D2F /* Inicio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888916992A8BDA51004D0D2F /* Inicio.swift */; };
 		8889169E2A8BDA66004D0D2F /* Traspasos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8889169D2A8BDA66004D0D2F /* Traspasos.swift */; };
-		888D48FE2A8FE67C0057CC8B /* GastosData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D48FD2A8FE67C0057CC8B /* GastosData.swift */; };
-		888D49002A8FEBDB0057CC8B /* TotalVentasData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D48FF2A8FEBDB0057CC8B /* TotalVentasData.swift */; };
-		888D49022A8FF4060057CC8B /* TraspasosData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49012A8FF4060057CC8B /* TraspasosData.swift */; };
-		888D49042A9015F40057CC8B /* DeliciasData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49032A9015F40057CC8B /* DeliciasData.swift */; };
 		888D490A2A9027CC0057CC8B /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49092A9027CC0057CC8B /* ApiManager.swift */; };
 		888D490C2A9027DA0057CC8B /* ApiManagerDelicias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D490B2A9027DA0057CC8B /* ApiManagerDelicias.swift */; };
 		88929A292A8D296A001507E1 /* Fecha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A282A8D296A001507E1 /* Fecha.swift */; };
@@ -27,10 +24,10 @@
 		88929A2F2A8D2B66001507E1 /* Egresos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A2E2A8D2B66001507E1 /* Egresos.swift */; };
 		88929A312A8D4365001507E1 /* CardsGastos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A302A8D4365001507E1 /* CardsGastos.swift */; };
 		88929A332A8D4552001507E1 /* CardsTraspasos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A322A8D4552001507E1 /* CardsTraspasos.swift */; };
-		88ADE0792A8EAC7A006BFA3A /* DesgloceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ADE0782A8EAC7A006BFA3A /* DesgloceData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		881A4A1C2A9113160081F77D /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		888749562A8BE20F00761745 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		888749582A8BE8FA00761745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		888749592A8C06DF00761745 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -41,10 +38,6 @@
 		888916922A8BDA34004D0D2F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		888916992A8BDA51004D0D2F /* Inicio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inicio.swift; sourceTree = "<group>"; };
 		8889169D2A8BDA66004D0D2F /* Traspasos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Traspasos.swift; sourceTree = "<group>"; };
-		888D48FD2A8FE67C0057CC8B /* GastosData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GastosData.swift; sourceTree = "<group>"; };
-		888D48FF2A8FEBDB0057CC8B /* TotalVentasData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalVentasData.swift; sourceTree = "<group>"; };
-		888D49012A8FF4060057CC8B /* TraspasosData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraspasosData.swift; sourceTree = "<group>"; };
-		888D49032A9015F40057CC8B /* DeliciasData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliciasData.swift; sourceTree = "<group>"; };
 		888D49092A9027CC0057CC8B /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		888D490B2A9027DA0057CC8B /* ApiManagerDelicias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagerDelicias.swift; sourceTree = "<group>"; };
 		88929A282A8D296A001507E1 /* Fecha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fecha.swift; sourceTree = "<group>"; };
@@ -53,7 +46,6 @@
 		88929A2E2A8D2B66001507E1 /* Egresos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Egresos.swift; sourceTree = "<group>"; };
 		88929A302A8D4365001507E1 /* CardsGastos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsGastos.swift; sourceTree = "<group>"; };
 		88929A322A8D4552001507E1 /* CardsTraspasos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTraspasos.swift; sourceTree = "<group>"; };
-		88ADE0782A8EAC7A006BFA3A /* DesgloceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesgloceData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,9 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				88929A282A8D296A001507E1 /* Fecha.swift */,
-				88929A372A8D7185001507E1 /* Traspasos */,
-				88929A362A8D7173001507E1 /* Gastos */,
 				88929A352A8D7150001507E1 /* Inicio */,
+				88929A362A8D7173001507E1 /* Gastos */,
+				88929A372A8D7185001507E1 /* Traspasos */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -167,11 +159,7 @@
 		88ADE0762A8EAC4E006BFA3A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				88ADE0782A8EAC7A006BFA3A /* DesgloceData.swift */,
-				888D48FD2A8FE67C0057CC8B /* GastosData.swift */,
-				888D48FF2A8FEBDB0057CC8B /* TotalVentasData.swift */,
-				888D49012A8FF4060057CC8B /* TraspasosData.swift */,
-				888D49032A9015F40057CC8B /* DeliciasData.swift */,
+				881A4A1C2A9113160081F77D /* ModelData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,21 +236,17 @@
 			files = (
 				88929A2F2A8D2B66001507E1 /* Egresos.swift in Sources */,
 				8887495A2A8C06DF00761745 /* MainView.swift in Sources */,
-				888D48FE2A8FE67C0057CC8B /* GastosData.swift in Sources */,
 				8889169E2A8BDA66004D0D2F /* Traspasos.swift in Sources */,
 				8889168C2A8BDA33004D0D2F /* appAHApp.swift in Sources */,
 				88929A2D2A8D2B06001507E1 /* Ingresos.swift in Sources */,
 				88929A312A8D4365001507E1 /* CardsGastos.swift in Sources */,
 				8887495C2A8C0B1000761745 /* Gastos.swift in Sources */,
-				888D49022A8FF4060057CC8B /* TraspasosData.swift in Sources */,
 				88929A2B2A8D2AA1001507E1 /* Totales.swift in Sources */,
-				888D49042A9015F40057CC8B /* DeliciasData.swift in Sources */,
 				88929A332A8D4552001507E1 /* CardsTraspasos.swift in Sources */,
 				88929A292A8D296A001507E1 /* Fecha.swift in Sources */,
 				888D490C2A9027DA0057CC8B /* ApiManagerDelicias.swift in Sources */,
 				888D490A2A9027CC0057CC8B /* ApiManager.swift in Sources */,
-				88ADE0792A8EAC7A006BFA3A /* DesgloceData.swift in Sources */,
-				888D49002A8FEBDB0057CC8B /* TotalVentasData.swift in Sources */,
+				881A4A1D2A9113160081F77D /* ModelData.swift in Sources */,
 				888749572A8BE20F00761745 /* ViewModel.swift in Sources */,
 				8889169A2A8BDA51004D0D2F /* Inicio.swift in Sources */,
 			);

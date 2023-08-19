@@ -45,6 +45,7 @@ class APIManagerDelicias{
         }.resume()
     }
     
+    //Decodificando los datos JSON de la API opcion 100 Total Ventas Delicias
     static func requestDeliciasAPI(date: String, completion: @escaping (Data?, Error?) -> Void) {
         
         let parameters = "opcion=100&fecha=\(date)"

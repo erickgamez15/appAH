@@ -15,15 +15,15 @@ class APIManager {
     
     static func requestData(withParameters parameters: String, completion: @escaping (Result<Data, Error>) -> Void) {
         
-        //Validando los parametro de consulta de la API (opcion=100&fecha=\(date))
-        guard let postData = parameters.data(using: .utf8) else {
-            completion(.failure(NSError(domain: "DataEncodingError", code: -1, userInfo: nil)))
-            return
-        }
-        
         //Validacion de la URL
         guard let url = URL(string: baseURL) else {
             completion(.failure(NSError(domain: "InvalidURL", code: -1, userInfo: nil)))
+            return
+        }
+        
+        //Validando los parametro de consulta de la API (opcion=\(option)&fecha=\(date))
+        guard let postData = parameters.data(using: .utf8) else {
+            completion(.failure(NSError(domain: "DataEncodingError", code: -1, userInfo: nil)))
             return
         }
         
@@ -46,7 +46,7 @@ class APIManager {
         }.resume()
     }
     
-    //Decodificando los datos JSON de la API
+    //Decodificando los datos JSON de la API para la opcion 51 Desgloce de Traspasos, Efectivo, etc.
     static func requestDesgloceAPI(withOption option: String, parameterKey: String, date: String, completion: @escaping (Data?, Error?) -> Void) {
         
         let parameters = "opcion=\(option)&\(parameterKey)=\(date)"
@@ -69,7 +69,7 @@ class APIManager {
         }
     }
     
-    //Decodificando los datos JSON de la API
+    //Decodificando los datos JSON de la API para la opcion 5 Total de ventas de la AH
     static func requestVentasTotalesAPI(withOption option: String, parameterKey: String, date: String, completion: @escaping (Data?, Error?) -> Void) {
         
         let parameters = "opcion=\(option)&\(parameterKey)=\(date)"
@@ -92,7 +92,7 @@ class APIManager {
         }
     }
     
-    //Decodificando los datos JSON de la API
+    //Decodificando los datos JSON de la API de la opcion 35 Gastos
     static func requestGastosAPI(withOption option: String, parameterKey: String, date: String, completion: @escaping (Data?, Error?) -> Void) {
         
         let parameters = "opcion=\(option)&\(parameterKey)=\(date)"
@@ -115,7 +115,7 @@ class APIManager {
         }
     }
     
-    //Decodificando los datos JSON de la API
+    //Decodificando los datos JSON de la API para la opcion 46 Traspasos
     static func requestTraspasosAPI(withOption option: String, parameterKey: String, date: String, completion: @escaping (Data?, Error?) -> Void) {
         
         let parameters = "opcion=\(option)&\(parameterKey)=\(date)"
