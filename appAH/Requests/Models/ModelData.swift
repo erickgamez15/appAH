@@ -8,7 +8,8 @@
 import Foundation
 
 //Model para los datos provenientes de la api en la opcion 51
-struct Desgloce: Decodable{
+struct Desgloce: Decodable, Identifiable{
+    var id: String { idMo }
     var idMo: String
     var fecha: String
     var tipooper: String
@@ -16,7 +17,8 @@ struct Desgloce: Decodable{
 }
 
 //Model para los datos provenientes de la api en la opcion 35
-struct GastosData: Decodable{
+struct GastosData: Decodable, Identifiable{
+    var id: String { idgasto }
     var idgasto: String
     var foliovale: String
     var fechacanje: String
@@ -31,7 +33,8 @@ struct GastosData: Decodable{
 }
 
 //Model para los datos provenientes de la api en la opcion 5
-struct TotalVentasData: Decodable{
+struct TotalVentasData: Decodable, Identifiable{
+    var id: String { SERIEID }
     var SERIEID: String
     var SERNOMBRE: String
     var FECHA: String
@@ -39,7 +42,8 @@ struct TotalVentasData: Decodable{
 }
 
 //Model para los datos provenientes de la api en la opcion 46
-struct TraspasosData: Decodable{
+struct TraspasosData: Decodable, Identifiable{
+    var id: String { DOCID }
     var DOCID: String
     var NUMERO: String
     var ESTADO: String
@@ -49,7 +53,8 @@ struct TraspasosData: Decodable{
 }
 
 //Model para los datos provenientes de la api opcion 100
-struct DeliciasData: Decodable{
+struct DeliciasData: Decodable, Identifiable{
+    var id: String { IDSERIE }
     var IDSERIE: String
     var TOTALVENTA: String
 }

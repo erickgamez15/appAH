@@ -8,7 +8,7 @@
 import Foundation
 
 // Clase ViewModel para las funciones de solicitud
-final class ViewModel {
+final class ViewModel: ObservableObject {
     
     // Desgloce de Efectivo, Tarjetas, etc.
     static func requestDesgloceAPI(withOption option: String, parameterKey: String, date: String, completion: @escaping (Data?, Error?) -> Void) {
@@ -46,12 +46,25 @@ final class ViewModel {
         requestTraspasosAPI(withOption: "46", parameterKey: "fecha", date: date, completion: completion)
     }
     
-    // Ventas Delicias
-    static func requestDeliciasAPI(date: String, completion: @escaping (Data?, Error?) -> Void) {
-        APIManagerDelicias.requestDeliciasAPI(date: date, completion: completion)
+    @Published var delicias: [DeliciasData]?
+    
+    // Función para hacer la solicitud a la API y cargar los datos en el model
+    func fetchDeliciasData(date: String) {
+        APIManagerDelicias.requestDeliciasAPI(date: date) { [weak self] data, error in
+            if let data = data {
+                do {
+                    //Decidifca los datos que vienen en formato JSON
+                    let decodedData = try JSONDecoder().decode([DeliciasData].self, from: data)
+                    DispatchQueue.main.async {
+                        self?.delicias = decodedData
+                        //print(self?.delicias ?? "null")
+                    }
+                } catch {
+                    print("Error decoding data: \(error)")
+                }
+            }
+        }
     }
     
-    static func opcion100Api(date: String, completion: @escaping (Data?, Error?) -> Void) {
-        requestDeliciasAPI(date: date, completion: completion)
-    }
+    
 }

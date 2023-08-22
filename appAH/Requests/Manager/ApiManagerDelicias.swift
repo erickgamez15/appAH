@@ -53,15 +53,7 @@ class APIManagerDelicias{
         APIManagerDelicias.requestDataDelicias(withParameters: parameters) { result in
             switch result {
             case .success(let data):
-                do {
-                    let decodedData = try JSONDecoder().decode([DeliciasData].self, from: data)
-                    DispatchQueue.main.async {
-                        // Handle decoded data here
-                        print(decodedData)
-                    }
-                } catch {
-                    print("Error decoding data: \(error)")
-                }
+                completion(data, nil)
             case .failure(let error):
                 print("Error: \(error)")
             }

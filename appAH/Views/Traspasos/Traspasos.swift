@@ -16,6 +16,8 @@ struct Traspasos: View {
     //Variable que indica el valor por defecto que se muestra si no se ha seleccionado una fecha
     @State var formattedDate: String = "yyyy-MM-dd"
     
+    let number: Int = 10
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -44,19 +46,15 @@ struct Traspasos: View {
                                 }
                                 
                                 HStack {
-                                    Text(formattedDate)
-                                        .bold()
+                                    if(formattedDate.starts(with: "yyyy-MM-dd")){
+                                        Text("\(currentDate, style: .date)")
+                                        
+                                    }else{
+                                        Text(formattedDate)
+                                    }
                                     Spacer()
                                     Button(action: {
-                                        ViewModel.opcion46Api(date: formattedDate){ response, error in
-                                            if let error = error {
-                                                print("Error: \(error)")
-                                            } else if let response = response {
-                                                if let responseString = String(data: response, encoding: .utf8) {
-                                                    print("Response: \(responseString)")
-                                                }
-                                            }
-                                        }
+                                        
                                     }) {
                                         Image(systemName: "doc.text.magnifyingglass")
                                         Text("Ver")
@@ -68,6 +66,7 @@ struct Traspasos: View {
                                     .background(Color.red)
                                     .cornerRadius(5)
                                 }
+                                .bold()
                             }
                             .padding()
                             .padding(.horizontal)
@@ -88,8 +87,9 @@ struct Traspasos: View {
                                 .padding(.bottom, 5.0)
                                 .padding(.top, 20)
                         ){
-                            //Cards de Traspasos
-                            CardsTraspasos()
+                            ForEach(0..<number, id: \.self) { _ in
+                                CardsTraspasos()
+                            }
                         }
                     }
                     

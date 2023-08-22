@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import Foundation
 
 //Vista que muestra los totales
 struct Totales: View {
     
-    @State var valueVentas = "88888888.80"
+    @StateObject private var viewModel = ViewModel()
+    var fecha: String
     
     var body: some View {
+        
         Group{
             Section(
                 header: Text("Totales")
@@ -28,7 +31,7 @@ struct Totales: View {
                 VStack{
                     HStack {
                         Text("Ventas: ")
-                        Text(valueVentas)
+                        Text(deliciasVentasFunc())
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 10)
@@ -38,7 +41,7 @@ struct Totales: View {
                     
                     HStack {
                         Text("Gastos: ")
-                        Text(valueVentas)
+                        Text(fecha)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 10)
@@ -48,7 +51,7 @@ struct Totales: View {
                     
                     HStack {
                         Text("Total final: ")
-                        Text(valueVentas)
+                        Text(fecha)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 10)
@@ -63,4 +66,23 @@ struct Totales: View {
             }//End Section
         }//End Group
     }//End body
+    
+    //Trae el valor de la venta diaria de Delicias
+    func deliciasVentasFunc() -> String {
+        var totalVentaDelicia: String = ""
+        
+        callMethod()
+        
+        for delicia in viewModel.delicias ?? [] {
+            totalVentaDelicia += "\(delicia.TOTALVENTA)"
+        }
+        
+        return totalVentaDelicia
+    }
+    
+    //Metodo que llama a la API para Delicias
+    func callMethod() {
+        viewModel.fetchDeliciasData(date: fecha)
+    }
+    
 }//End View

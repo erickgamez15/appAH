@@ -13,8 +13,8 @@ struct Inicio: View {
     @State var currentDate: Date = Date()
     @State var fecha: Fecha = Fecha()
     
-    //Variable que indica el valor por defecto que se muestra si no se ha seleccionado una fecha
-    @State var formattedDate: String = "yyyy-MM-dd"
+    //Variable que contiene el valor por defecto de date
+    @State var date: String = "yyyy-MM-dd"
     
     var body: some View {
         NavigationView {
@@ -48,37 +48,33 @@ struct Inicio: View {
                                     in: ...Date(),
                                     displayedComponents: .date
                                 )
+                                .accentColor(.red)
                                 
                                 //Contiene la fecha en formato yyyy-MM-dd
-                                .onChange(of: currentDate) { newValue in
-                                    formattedDate = fecha.formatDate(date: newValue)
+                                .onChange(of: currentDate) { newDate in
+                                    date = fecha.formatDate(date: newDate)
                                 }
                                 
                                 HStack {
-                                    Text(formattedDate)
-                                        .bold()
+                                    if(date != "yyyy-MM-dd"){
+                                        Text(date)
+                                    }else {
+                                        Text("\(fecha.formatDate(date: currentDate))")
+                                    }
                                     Spacer()
                                     Button(action: {
-                                        ViewModel.opcion51Api(date: formattedDate){ response, error in
-                                            if let error = error {
-                                                print("Error: \(error)")
-                                            } else if let response = response {
-                                                if let responseString = String(data: response, encoding: .utf8) {
-                                                    print("Response: \(responseString)")
-                                                }
-                                            }
-                                        }
+                                        
                                     }) {
                                         Image(systemName: "doc.text.magnifyingglass")
                                         Text("Ver")
                                     }
-                                    .bold()
                                     .padding(34)
                                     .frame(height: 35)
                                     .foregroundColor(.white)
                                     .background(Color.red)
                                     .cornerRadius(5)
                                 }
+                                .bold()
                             }
                             .padding()
                             //Indica que dará un margen tanto a la derecha como a la izquierda
@@ -93,7 +89,7 @@ struct Inicio: View {
                     }//End Group
                     
                     //Otros modulos dentro de la vista inicio, cada uno tiene su clase
-                    Totales()
+                    Totales(fecha: date)
                     
                     Ingresos()
                     

@@ -19,6 +19,8 @@ struct Gastos: View {
     @State var valueVentas = "8888888.88"
     @State var text = "Compra de alimentos Miércoles y Jueves"
     
+    let number: Int = 10
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -47,19 +49,14 @@ struct Gastos: View {
                                 }
                                 
                                 HStack {
-                                    Text(formattedDate)
-                                        .bold()
+                                    if(formattedDate.starts(with: "yyyy-MM-dd")){
+                                        Text("\(currentDate, style: .date)")
+                                        
+                                    }else{
+                                        Text(formattedDate)
+                                    }
                                     Spacer()
                                     Button(action: {
-                                        ViewModel.opcion35Api(date: formattedDate){ response, error in
-                                            if let error = error {
-                                                print("Error: \(error)")
-                                            } else if let response = response {
-                                                if let responseString = String(data: response, encoding: .utf8) {
-                                                    print("Response: \(responseString)")
-                                                }
-                                            }
-                                        }
 
                                     }) {
                                         Image(systemName: "doc.text.magnifyingglass")
@@ -72,6 +69,7 @@ struct Gastos: View {
                                     .background(Color.red)
                                     .cornerRadius(5)
                                 }
+                                .bold()
                             }
                             .padding()
                             .padding(.horizontal)
@@ -94,7 +92,9 @@ struct Gastos: View {
                     }
                     
                     //Cards de Gastos
-                    CardsGastos()
+                    ForEach(0..<number, id: \.self) { _ in
+                        CardsGastos()
+                    }
                     
                     VStack{
                         
