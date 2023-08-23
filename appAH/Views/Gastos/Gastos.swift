@@ -17,8 +17,6 @@ struct Gastos: View {
     //Variable que contiene el valor por defecto de date
     @State var date: String = "yyyy-MM-dd"
     
-    let number: Int = 10
-    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -90,8 +88,8 @@ struct Gastos: View {
                     }
                     
                     //Cards de Gastos
-                    ForEach(0..<number, id: \.self) { _ in
-                        CardsGastos()
+                    ForEach(viewModel.gastos ?? []) { gasto in
+                        CardsGastos(observacion: "\(gasto.obs)", emisor: "\(gasto.emisor)", autor: "\(gasto.autor)", importeFinal: "\(gasto.importefinal)", importeSolicitado: "\(gasto.solicita)")
                     }
                     
                     VStack{

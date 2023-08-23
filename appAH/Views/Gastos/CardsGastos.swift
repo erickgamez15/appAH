@@ -9,16 +9,18 @@ import SwiftUI
 
 struct CardsGastos: View {
     
-    @State var valueVentas = "8888888.88"
-    @State var text = "Compra de alimentos Miércoles y Jueves"
-    @State var textName = "FELICITAS GARCÍA CASTRO"
+    var observacion: String
+    var emisor: String
+    var autor: String
+    var importeFinal: String
+    var importeSolicitado: String
     
     var body: some View {
         Group{
             Section{
                 VStack{
                     HStack{
-                        Text(text)
+                        Text(observacion)
                     }
                     .padding(.vertical, 5)
                     .bold()
@@ -27,7 +29,7 @@ struct CardsGastos: View {
                     
                     HStack {
                         Text("Importe Solicitado: ")
-                        Text(valueVentas)
+                        Text(importeSolicitado)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 5)
@@ -35,7 +37,7 @@ struct CardsGastos: View {
                     
                     HStack {
                         Text("Importe final: ")
-                        Text(valueVentas)
+                        Text(importeFinal)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 5)
@@ -43,7 +45,7 @@ struct CardsGastos: View {
                     
                     HStack {
                         Text("Emisor: ")
-                        Text(textName)
+                        Text(emisor)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 5)
@@ -51,7 +53,7 @@ struct CardsGastos: View {
                     
                     HStack {
                         Text("Solicita: ")
-                        Text(textName)
+                        Text(autor)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 5)
