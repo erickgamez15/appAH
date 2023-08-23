@@ -31,7 +31,7 @@ struct Totales: View {
                 VStack{
                     HStack {
                         Text("Ventas: ")
-                        Text(deliciasVentasFunc())
+                        Text("$\(totalVentasFunc(), specifier: "%.3f")")
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 10)
@@ -41,7 +41,7 @@ struct Totales: View {
                     
                     HStack {
                         Text("Gastos: ")
-                        Text(fecha)
+                        Text("$\(gastosFunc(), specifier: "%.5f")")
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 10)
@@ -51,7 +51,7 @@ struct Totales: View {
                     
                     HStack {
                         Text("Total final: ")
-                        Text(fecha)
+                        Text("$\(totalFinal(), specifier: "%.3f")")
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 10)
@@ -68,21 +68,81 @@ struct Totales: View {
     }//End body
     
     //Trae el valor de la venta diaria de Delicias
-    func deliciasVentasFunc() -> String {
-        var totalVentaDelicia: String = ""
+    func deliciasVentasFunc() -> Float {
+        var totalVentaDelicia: Float = 0.0
         
-        callMethod()
+        callMethodDelicias()
         
         for delicia in viewModel.delicias ?? [] {
-            totalVentaDelicia += "\(delicia.TOTALVENTA)"
+            if let totalDelicia = Float(delicia.TOTALVENTA) {
+                totalVentaDelicia += totalDelicia
+            } else {
+                print("No se pudo convertir '\(delicia.TOTALVENTA)' a Float.")
+            }
         }
         
         return totalVentaDelicia
     }
     
-    //Metodo que llama a la API para Delicias
-    func callMethod() {
-        viewModel.fetchDeliciasData(date: fecha)
+    func totalVentasFunc() -> Float{
+        var totalVentas: Float = 0.0
+        var total: Float = 0.0
+        
+        callNethodTotalVentas()
+        
+        for importe in viewModel.totales ?? [] {
+            if let importeTotal = Float(importe.IMPORTECAJA) {
+                totalVentas += importeTotal
+            } else {
+                print("No se pudo convertir '\(importe.IMPORTECAJA)' a Float.")
+            }
+        }
+        
+        //Suma de la venta total de AH + Delicias
+        total = totalVentas + deliciasVentasFunc()
+        
+        return total
     }
     
+    //Funcion que trae el desgloce
+    func gastosFunc() -> Float {
+        var total: Float = 0.0
+        
+        callMethodGastos()
+        
+        for gasto in viewModel.gastos ?? [] {
+            if let importeFinal = Float(gasto.importefinal) {
+                total += importeFinal
+            } else {
+                print("No se pudo convertir '\(gasto.importefinal)' a Float.")
+            }
+        }
+        
+        return total
+    }
+    
+    //Funcion que muestra el total final
+    func totalFinal() -> Float {
+        return Float(totalVentasFunc() - gastosFunc())
+    }
+    
+    //Llamadas a la API
+    //Metodo que llama a la API para Delicias
+    func callMethodDelicias() {
+        DispatchQueue.global(qos: .background).async {
+            viewModel.fetchDeliciasData(date: fecha)
+        }
+    }
+    
+    func callNethodTotalVentas() {
+        DispatchQueue.global(qos: .background).async {
+            viewModel.fetchTotalesVentasData(date: fecha)
+        }
+    }
+    
+    func callMethodGastos(){
+        DispatchQueue.global(qos: .background).async {
+            viewModel.fetchGastosData(date: fecha)
+        }
+    }
 }//End View

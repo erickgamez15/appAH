@@ -14,15 +14,15 @@ class APIManagerDelicias{
     
     static func requestDataDelicias(withParameters parameters: String, completion: @escaping (Result<Data, Error>) -> Void) {
         
-        //Validando los parametro de consulta de la API (opcion=100&fecha=\(date))
-        guard let postData = parameters.data(using: .utf8) else {
-            completion(.failure(NSError(domain: "DataEncodingError", code: -1, userInfo: nil)))
-            return
-        }
-        
         //Validacion de la URL
         guard let url = URL(string: deliciasURL) else {
             completion(.failure(NSError(domain: "InvalidURL", code: -1, userInfo: nil)))
+            return
+        }
+        
+        //Validando los parametro de consulta de la API (opcion=100&fecha=\(date))
+        guard let postData = parameters.data(using: .utf8) else {
+            completion(.failure(NSError(domain: "DataEncodingError", code: -1, userInfo: nil)))
             return
         }
         
@@ -45,7 +45,7 @@ class APIManagerDelicias{
         }.resume()
     }
     
-    //Decodificando los datos JSON de la API opcion 100 Total Ventas Delicias
+    //Verificando los datos JSON de la API para la opcion 100 Venta Delicias
     static func requestDeliciasAPI(date: String, completion: @escaping (Data?, Error?) -> Void) {
         
         let parameters = "opcion=100&fecha=\(date)"

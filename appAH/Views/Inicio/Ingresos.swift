@@ -11,6 +11,8 @@ import SwiftUI
 struct Ingresos: View {
     
     @State var value = "88888888.80"
+    @StateObject private var viewModel = ViewModel()
+    var fecha: String
     
     var body: some View {
         
@@ -26,6 +28,25 @@ struct Ingresos: View {
                     .padding(.top, 30)
             ){
                 VStack{
+                    VStack{
+                        HStack{
+                            Text("Total Entradas: ")
+                            Text("$\(totalVentasFunc(), specifier: "%.3f")")
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
+                        .bold()
+                        .foregroundColor(.green)
+                        
+                        Divider()
+                    }
+                
+                    HStack{
+                        Label("Delicias: ", systemImage: "bag.badge.plus")
+                        Text("$\(deliciasVentasFunc(), specifier: "%.3f")")
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                    .padding(.vertical, 5)
+                    
                     HStack{
                         Label("Efectivo: ", systemImage: "dollarsign")
                         Text(value)
@@ -81,17 +102,6 @@ struct Ingresos: View {
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.vertical, 5)
-                    
-                    Divider()
-                    
-                    HStack{
-                        Text("Total Entradas: ")
-                        Text(value)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                    }
-                    .padding(.top, 10)
-                    .bold()
-                    .foregroundColor(.green)
                 }//End VStack
                 .padding()
                 .font(.body)
@@ -102,4 +112,60 @@ struct Ingresos: View {
             }//End Section
         }//End Group
     }//End body
+    
+    //Trae el valor de la venta diaria de Delicias
+    func deliciasVentasFunc() -> Float {
+        var totalVentaDelicia: Float = 0.0
+        
+        callMethodDelicias()
+        
+        for delicia in viewModel.delicias ?? [] {
+            if let totalDelicia = Float(delicia.TOTALVENTA) {
+                totalVentaDelicia += totalDelicia
+            } else {
+                print("No se pudo convertir '\(delicia.TOTALVENTA)' a Float.")
+            }
+        }
+        
+        return totalVentaDelicia
+    }
+    
+    func totalVentasFunc() -> Float{
+        var totalVentas: Float = 0.0
+        var total: Float = 0.0
+        
+        callNethodTotalVentas()
+        
+        for importe in viewModel.totales ?? [] {
+            if let importeTotal = Float(importe.IMPORTECAJA) {
+                totalVentas += importeTotal
+            } else {
+                print("No se pudo convertir '\(importe.IMPORTECAJA)' a Float.")
+            }
+        }
+        
+        //Suma de la venta total de AH + Delicias
+        total = totalVentas + deliciasVentasFunc()
+        
+        return total
+    }
+    
+    //Metodo que llama a la API para Delicias
+    func callMethodDelicias() {
+        DispatchQueue.global(qos: .background).async {
+            viewModel.fetchDeliciasData(date: fecha)
+        }
+    }
+    
+    func callNethodTotalVentas() {
+        DispatchQueue.global(qos: .background).async {
+            viewModel.fetchTotalesVentasData(date: fecha)
+        }
+    }
+    
+    func callMethodDesgloce(){
+        DispatchQueue.global(qos: .background).async {
+            viewModel.fetchDesgloceData(date: fecha)
+        }
+    }
 }//End View

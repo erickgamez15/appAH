@@ -91,9 +91,9 @@ struct Inicio: View {
                     //Otros modulos dentro de la vista inicio, cada uno tiene su clase
                     Totales(fecha: date)
                     
-                    Ingresos()
+                    Ingresos(fecha: date)
                     
-                    Egresos()
+                    Egresos(fecha: date)
                     
                     //VStack vacio que da un margen inferior
                     VStack{

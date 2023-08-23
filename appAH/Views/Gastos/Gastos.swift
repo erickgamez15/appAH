@@ -12,12 +12,10 @@ struct Gastos: View {
     //Instancias
     @State var currentDate: Date = Date()
     @State var fecha: Fecha = Fecha()
+    @StateObject private var viewModel = ViewModel()
     
-    //Variable que indica el valor por defecto que se muestra si no se ha seleccionado una fecha
-    @State var formattedDate: String = "yyyy-MM-dd"
-    
-    @State var valueVentas = "8888888.88"
-    @State var text = "Compra de alimentos Miércoles y Jueves"
+    //Variable que contiene el valor por defecto de date
+    @State var date: String = "yyyy-MM-dd"
     
     let number: Int = 10
     
@@ -42,18 +40,18 @@ struct Gastos: View {
                                     in: ...Date(),
                                     displayedComponents: .date
                                 )
+                                .accentColor(.red)
                                 
                                 //Contiene la fecha en formato yyyy-MM-dd
-                                .onChange(of: currentDate) { newValue in
-                                    formattedDate = fecha.formatDate(date: newValue)
+                                .onChange(of: currentDate) { newDate in
+                                    date = fecha.formatDate(date: newDate)
                                 }
                                 
                                 HStack {
-                                    if(formattedDate.starts(with: "yyyy-MM-dd")){
-                                        Text("\(currentDate, style: .date)")
-                                        
-                                    }else{
-                                        Text(formattedDate)
+                                    if(date != "yyyy-MM-dd"){
+                                        Text(date)
+                                    }else {
+                                        Text("\(fecha.formatDate(date: currentDate))")
                                     }
                                     Spacer()
                                     Button(action: {
@@ -82,7 +80,7 @@ struct Gastos: View {
                     Group{
                         Section{
                             HStack{
-                                Text("Total: $\(valueVentas)")
+                                Text("Total: $\(gastosFunc(), specifier: "%.5f")")
                             }
                             .padding(.vertical, 25)
                             .foregroundColor(.white)
@@ -121,6 +119,29 @@ struct Gastos: View {
                 }
             }
             .padding(.top, -40.0)
+        }
+    }
+    
+    //Funcion que trae el desgloce
+    func gastosFunc() -> Float {
+        var total: Float = 0.0
+        
+        callMethodGastos()
+        
+        for gasto in viewModel.gastos ?? [] {
+            if let importeFinal = Float(gasto.importefinal) {
+                total += importeFinal
+            } else {
+                print("No se pudo convertir '\(gasto.importefinal)' a Double.")
+            }
+        }
+        
+        return total
+    }
+    
+    func callMethodGastos(){
+        DispatchQueue.global(qos: .background).async {
+            viewModel.fetchGastosData(date: date)
         }
     }
 }

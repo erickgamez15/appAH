@@ -11,6 +11,8 @@ import SwiftUI
 struct Egresos: View {
     
     @State var value = "88888888.80"
+    @StateObject private var viewModel = ViewModel()
+    var fecha: String
     
     var body: some View {
         
@@ -26,6 +28,16 @@ struct Egresos: View {
                     .padding(.top, 30)
             ){
                 VStack{
+                    HStack{
+                        Text("Total Salidas: ")
+                        Text("$\(gastosFunc(), specifier: "%.5f")")
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                    .bold()
+                    .foregroundColor(.red)
+                    
+                    Divider() //Linea divisora
+                    
                     HStack{
                         Label("Gastos: ", systemImage: "dollarsign")
                         Text(value)
@@ -74,17 +86,6 @@ struct Egresos: View {
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding(.bottom, 10)
-                    
-                    Divider() //Linea divisora
-                    
-                    HStack{
-                        Text("Total Salidas: ")
-                        Text(value)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                    }
-                    .padding(.top, 10)
-                    .bold()
-                    .foregroundColor(.red)
                 }//End VStack
                 .padding()
                 .font(.body)
@@ -95,4 +96,27 @@ struct Egresos: View {
             }//End Section
         }//End Group
     }//End body
+    
+    //Funcion que trae el desgloce
+    func gastosFunc() -> Float {
+        var total: Float = 0.0
+        
+        callMethodGastos()
+        
+        for gasto in viewModel.gastos ?? [] {
+            if let importeFinal = Float(gasto.importefinal) {
+                total += importeFinal
+            } else {
+                print("No se pudo convertir '\(gasto.importefinal)' a Double.")
+            }
+        }
+        
+        return total
+    }
+    
+    func callMethodGastos(){
+        DispatchQueue.global(qos: .background).async {
+            viewModel.fetchGastosData(date: fecha)
+        }
+    }
 }//End View
