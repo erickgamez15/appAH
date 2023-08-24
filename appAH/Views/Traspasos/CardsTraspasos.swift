@@ -9,23 +9,26 @@ import SwiftUI
 
 struct CardsTraspasos: View {
     
-    @State var text = "Para turno de la noche"
-    @State var textName = "FELICITAS GARCÍA CASTRO"
-    @State var showTable = false
+    var nota: String
+    var solicita: String
     
     var body: some View {
         VStack{
             HStack{
-                Text("Nota: \(text)")
+                Text("Nota: ")
+                Text("\(nota)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .foregroundColor(.black)
             
             HStack {
-                Text("Solicita: \(textName)")
+                Text("Solicita: ")
+                Text("\(solicita)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .foregroundColor(.black)
             
-            Button(action: {
+            /*Button(action: {
                 showTable.toggle()
             }) {
                 Image(systemName: "chevron.down")
@@ -33,7 +36,7 @@ struct CardsTraspasos: View {
             .bold()
             .padding(.top, 1)
             .foregroundColor(.red)
-            .cornerRadius(5)
+            .cornerRadius(5)*/
         }
         .padding()
         .padding(.horizontal)
@@ -42,7 +45,7 @@ struct CardsTraspasos: View {
         .background(Color.white)
         .cornerRadius(20)
         
-        if showTable {
+        /*if showTable {
             Group{
                 Section{
                     Table() // Llama a la vista de la tabla
@@ -50,11 +53,11 @@ struct CardsTraspasos: View {
                 .shadow(color: .black.opacity(0.3), radius: 5)
                 .padding(.top, 1)
             }
-        }
+        }*/
     }
 }
 
-struct Table: View{
+/*struct Table: View{
     
     let tableData: [(cantidad: String, descripcion: String)] = [
         (cantidad: "1.54 KG", descripcion: "LONGANIZA CHILACTECA"),
@@ -94,4 +97,4 @@ struct Table: View{
         .background(Color.white)
         .cornerRadius(20)
     }
-}
+}*/

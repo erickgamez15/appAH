@@ -12,11 +12,10 @@ struct Traspasos: View {
     //Instancias
     @State var currentDate: Date = Date()
     @State var fecha: Fecha = Fecha()
+    @StateObject private var viewModel = ViewModel()
     
-    //Variable que indica el valor por defecto que se muestra si no se ha seleccionado una fecha
-    @State var formattedDate: String = "yyyy-MM-dd"
-    
-    let number: Int = 10
+    //Variable que contiene el valor por defecto de date
+    @State var date: String = "yyyy-MM-dd"
     
     var body: some View {
         NavigationView {
@@ -41,20 +40,19 @@ struct Traspasos: View {
                                 )
                                 
                                 //Contiene la fecha en formato yyyy-MM-dd
-                                .onChange(of: currentDate) { newValue in
-                                    formattedDate = fecha.formatDate(date: newValue)
+                                .onChange(of: currentDate) { newDate in
+                                    date = fecha.formatDate(date: newDate)
                                 }
                                 
                                 HStack {
-                                    if(formattedDate.starts(with: "yyyy-MM-dd")){
-                                        Text("\(currentDate, style: .date)")
-                                        
-                                    }else{
-                                        Text(formattedDate)
+                                    if(date != "yyyy-MM-dd"){
+                                        Text(date)
+                                    }else {
+                                        Text("\(fecha.formatDate(date: currentDate))")
                                     }
                                     Spacer()
                                     Button(action: {
-                                        
+                                        callMethodTraspasos()
                                     }) {
                                         Image(systemName: "doc.text.magnifyingglass")
                                         Text("Ver")
@@ -74,6 +72,7 @@ struct Traspasos: View {
                             .background(Color.white)
                             .cornerRadius(20)
                         }
+                        .accentColor(.red)
                     }
                     
                     Group{
@@ -87,10 +86,11 @@ struct Traspasos: View {
                                 .padding(.bottom, 5.0)
                                 .padding(.top, 20)
                         ){
-                            ForEach(0..<number, id: \.self) { _ in
-                                CardsTraspasos()
+                            ForEach(viewModel.traspasos ?? []) { traspaso in
+                                CardsTraspasos(nota: "\(traspaso.NOTA)", solicita: "\(traspaso.XSOLICITA)")
                             }
                         }
+                        .padding(.bottom)
                     }
                     
                     VStack{
@@ -118,6 +118,12 @@ struct Traspasos: View {
                 }
             }
             .padding(.top, -40.0)
+        }
+    }
+    
+    func callMethodTraspasos(){
+        DispatchQueue.global(qos: .background).async {
+            viewModel.fetchTraspasosData(date: date)
         }
     }
 }

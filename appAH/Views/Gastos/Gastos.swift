@@ -53,7 +53,7 @@ struct Gastos: View {
                                     }
                                     Spacer()
                                     Button(action: {
-
+                                        callMethodGastos()
                                     }) {
                                         Image(systemName: "doc.text.magnifyingglass")
                                         Text("Ver")
@@ -76,20 +76,21 @@ struct Gastos: View {
                     }
                     
                     Group{
-                        Section{
-                            HStack{
-                                Text("Total: $\(gastosFunc(), specifier: "%.5f")")
+                        Section(
+                            header: Text("Total: $\(gastosFunc(), specifier: "%.5f")")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding(.leading)
+                                .padding(.top, 25)
+                        ){
+                            //Cards de Gastos
+                            ForEach(viewModel.gastos ?? []) { gasto in
+                                CardsGastos(observacion: "\(gasto.obs)", emisor: "\(gasto.emisor)", autor: "\(gasto.autor)", importeFinal: "\(gasto.importefinal)", importeSolicitado: "\(gasto.solicita)")
                             }
-                            .padding(.vertical, 25)
-                            .foregroundColor(.white)
-                            .font(.title2)
-                            .fontWeight(.heavy)
                         }
-                    }
-                    
-                    //Cards de Gastos
-                    ForEach(viewModel.gastos ?? []) { gasto in
-                        CardsGastos(observacion: "\(gasto.obs)", emisor: "\(gasto.emisor)", autor: "\(gasto.autor)", importeFinal: "\(gasto.importefinal)", importeSolicitado: "\(gasto.solicita)")
+                        .padding(.bottom)
                     }
                     
                     VStack{
@@ -124,13 +125,11 @@ struct Gastos: View {
     func gastosFunc() -> Float {
         var total: Float = 0.0
         
-        callMethodGastos()
-        
         for gasto in viewModel.gastos ?? [] {
             if let importeFinal = Float(gasto.importefinal) {
                 total += importeFinal
             } else {
-                print("No se pudo convertir '\(gasto.importefinal)' a Double.")
+                print("No se pudo convertir '\(gasto.importefinal)' a Float.")
             }
         }
         
