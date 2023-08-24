@@ -15,13 +15,13 @@ struct MainView: View {
         
         //TabView da el diseño a la vista principal de la aplicación
         TabView(selection: $selectedTab) {
-            /*Inicio()
+            Inicio()
                 .tabItem {
                     Label("Inicio", systemImage: "house.circle.fill")
                 }
                 .edgesIgnoringSafeArea(.top)
             //Indica la posición del elemento en la parte inferior de la pantalla
-                .tag(0)*/
+                .tag(0)
             
             Gastos()
                 .tabItem {

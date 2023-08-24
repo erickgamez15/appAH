@@ -19,9 +19,6 @@
 		888D490A2A9027CC0057CC8B /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D49092A9027CC0057CC8B /* ApiManager.swift */; };
 		888D490C2A9027DA0057CC8B /* ApiManagerDelicias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D490B2A9027DA0057CC8B /* ApiManagerDelicias.swift */; };
 		88929A292A8D296A001507E1 /* Fecha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A282A8D296A001507E1 /* Fecha.swift */; };
-		88929A2B2A8D2AA1001507E1 /* Totales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A2A2A8D2AA1001507E1 /* Totales.swift */; };
-		88929A2D2A8D2B06001507E1 /* Ingresos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A2C2A8D2B06001507E1 /* Ingresos.swift */; };
-		88929A2F2A8D2B66001507E1 /* Egresos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A2E2A8D2B66001507E1 /* Egresos.swift */; };
 		88929A312A8D4365001507E1 /* CardsGastos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A302A8D4365001507E1 /* CardsGastos.swift */; };
 		88929A332A8D4552001507E1 /* CardsTraspasos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88929A322A8D4552001507E1 /* CardsTraspasos.swift */; };
 /* End PBXBuildFile section */
@@ -41,9 +38,6 @@
 		888D49092A9027CC0057CC8B /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		888D490B2A9027DA0057CC8B /* ApiManagerDelicias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagerDelicias.swift; sourceTree = "<group>"; };
 		88929A282A8D296A001507E1 /* Fecha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fecha.swift; sourceTree = "<group>"; };
-		88929A2A2A8D2AA1001507E1 /* Totales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Totales.swift; sourceTree = "<group>"; };
-		88929A2C2A8D2B06001507E1 /* Ingresos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingresos.swift; sourceTree = "<group>"; };
-		88929A2E2A8D2B66001507E1 /* Egresos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Egresos.swift; sourceTree = "<group>"; };
 		88929A302A8D4365001507E1 /* CardsGastos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsGastos.swift; sourceTree = "<group>"; };
 		88929A322A8D4552001507E1 /* CardsTraspasos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTraspasos.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,9 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				888916992A8BDA51004D0D2F /* Inicio.swift */,
-				88929A2A2A8D2AA1001507E1 /* Totales.swift */,
-				88929A2C2A8D2B06001507E1 /* Ingresos.swift */,
-				88929A2E2A8D2B66001507E1 /* Egresos.swift */,
 			);
 			path = Inicio;
 			sourceTree = "<group>";
@@ -234,14 +225,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88929A2F2A8D2B66001507E1 /* Egresos.swift in Sources */,
 				8887495A2A8C06DF00761745 /* MainView.swift in Sources */,
 				8889169E2A8BDA66004D0D2F /* Traspasos.swift in Sources */,
 				8889168C2A8BDA33004D0D2F /* appAHApp.swift in Sources */,
-				88929A2D2A8D2B06001507E1 /* Ingresos.swift in Sources */,
 				88929A312A8D4365001507E1 /* CardsGastos.swift in Sources */,
 				8887495C2A8C0B1000761745 /* Gastos.swift in Sources */,
-				88929A2B2A8D2AA1001507E1 /* Totales.swift in Sources */,
 				88929A332A8D4552001507E1 /* CardsTraspasos.swift in Sources */,
 				88929A292A8D296A001507E1 /* Fecha.swift in Sources */,
 				888D490C2A9027DA0057CC8B /* ApiManagerDelicias.swift in Sources */,
