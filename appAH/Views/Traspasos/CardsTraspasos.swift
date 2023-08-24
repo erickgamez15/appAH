@@ -19,6 +19,7 @@ struct CardsTraspasos: View {
                 Text("\(nota)")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .bold()
             .foregroundColor(.black)
             
             HStack {
@@ -26,7 +27,8 @@ struct CardsTraspasos: View {
                 Text("\(solicita)")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .foregroundColor(.black)
+            .bold()
+            .foregroundColor(.cyan)
             
             /*Button(action: {
                 showTable.toggle()

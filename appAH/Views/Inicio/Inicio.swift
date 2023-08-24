@@ -68,9 +68,8 @@ struct Inicio: View {
                                     Spacer()
                                     Button(action: {
                                         if (date != "yyyy-MM-dd") {
-                                            callMethodDelicias()
-                                            callMethodTotalVentas()
-                                            callMethodGastos()
+                                            //Metodo que llama a cada opcion de la API
+                                            viewModel.fetchData(date: date)
                                         } else {
                                             showAlert = true
                                             alertMessage = "Seleccione una fecha"
@@ -349,7 +348,7 @@ struct Inicio: View {
                 }
             }
             //Se aplica a ScrollView y coloca el icono de bars a la derecha
-            .toolbar {
+            /*.toolbar {
                 //placement indica la posicion del elemento .navigationBarTrailing lo pone a la derecha y .navigationBarLeading lo pone a la izquierda
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {}) {
@@ -357,7 +356,7 @@ struct Inicio: View {
                     }
                     .accentColor(.black)
                 }
-            }
+            }*/
             .padding(.top, -40.0)
         }//End NavigationView
     }//End body
@@ -409,20 +408,6 @@ struct Inicio: View {
         }
         
         return total
-    }
-    
-    //Llamadas a la API
-    //Metodo que llama a la API para Delicias
-    func callMethodDelicias() {
-        viewModel.fetchDeliciasData(date: date)
-    }
-    
-    func callMethodTotalVentas() {
-        viewModel.fetchTotalesVentasData(date: date)
-    }
-    
-    func callMethodGastos(){
-        viewModel.fetchGastosData(date: date)
     }
 }//End View
 

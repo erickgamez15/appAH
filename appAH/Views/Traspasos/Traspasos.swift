@@ -16,6 +16,8 @@ struct Traspasos: View {
     
     //Variable que contiene el valor por defecto de date
     @State var date: String = "yyyy-MM-dd"
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         NavigationView {
@@ -52,7 +54,13 @@ struct Traspasos: View {
                                     }
                                     Spacer()
                                     Button(action: {
-                                        callMethodTraspasos()
+                                        if (date != "yyyy-MM-dd") {
+                                            //Metodo que llama a cada opcion de la API
+                                            viewModel.fetchData(date: date)
+                                        } else {
+                                            showAlert = true
+                                            alertMessage = "Seleccione una fecha"
+                                        }
                                     }) {
                                         Image(systemName: "doc.text.magnifyingglass")
                                         Text("Ver")
@@ -63,6 +71,9 @@ struct Traspasos: View {
                                     .foregroundColor(.white)
                                     .background(Color.red)
                                     .cornerRadius(5)
+                                    .alert(isPresented: $showAlert) {
+                                        Alert(title: Text("¡Advertencia!"), message: Text(alertMessage), dismissButton: .default(Text("Aceptar")))
+                                    }
                                 }
                                 .bold()
                             }
@@ -109,21 +120,15 @@ struct Traspasos: View {
                         .bold()
                 }
             }
-            .toolbar {
+            /*.toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {}) {
                         Image(systemName: "line.horizontal.3")
                     }
                     .accentColor(.black)
                 }
-            }
+            }*/
             .padding(.top, -40.0)
-        }
-    }
-    
-    func callMethodTraspasos(){
-        DispatchQueue.global(qos: .background).async {
-            viewModel.fetchTraspasosData(date: date)
         }
     }
 }

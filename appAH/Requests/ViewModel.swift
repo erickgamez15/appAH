@@ -16,6 +16,15 @@ final class ViewModel: ObservableObject {
     @Published var traspasos: [TraspasosData]?
     @Published var delicias: [DeliciasData]?
     
+    //Hace el llamdado de cada metodo
+    func fetchData(date: String) {
+        fetchDesgloceData(date: date)
+        fetchTotalesVentasData(date: date)
+        fetchGastosData(date: date)
+        fetchTraspasosData(date: date)
+        fetchDeliciasData(date: date)
+    }
+    
     //Decodificando //Verificando los datos JSON de la API de la opcion 51 Desgloce de Traspasos, Efectivo, tec.
     func fetchDesgloceData(date: String){
         APIManager.requestDesgloceAPI(withOption: "51", parameterKey: "fecha", date: date){ [weak self] data, error in

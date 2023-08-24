@@ -16,6 +16,8 @@ struct Gastos: View {
     
     //Variable que contiene el valor por defecto de date
     @State var date: String = "yyyy-MM-dd"
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         NavigationView {
@@ -53,7 +55,13 @@ struct Gastos: View {
                                     }
                                     Spacer()
                                     Button(action: {
-                                        callMethodGastos()
+                                        if (date != "yyyy-MM-dd") {
+                                            //Metodo que llama a cada opcion de la API
+                                            viewModel.fetchData(date: date)
+                                        } else {
+                                            showAlert = true
+                                            alertMessage = "Seleccione una fecha"
+                                        }
                                     }) {
                                         Image(systemName: "doc.text.magnifyingglass")
                                         Text("Ver")
@@ -64,6 +72,9 @@ struct Gastos: View {
                                     .foregroundColor(.white)
                                     .background(Color.red)
                                     .cornerRadius(5)
+                                    .alert(isPresented: $showAlert) {
+                                        Alert(title: Text("¡Advertencia!"), message: Text(alertMessage), dismissButton: .default(Text("Aceptar")))
+                                    }
                                 }
                                 .bold()
                             }
@@ -77,7 +88,7 @@ struct Gastos: View {
                     
                     Group{
                         Section(
-                            header: Text("Total: $\(gastosFunc(), specifier: "%.5f")")
+                            header: Text("Total: $\(gastosFunc(), specifier: "%.3f")")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .font(.title)
                                 .fontWeight(.semibold)
@@ -109,24 +120,24 @@ struct Gastos: View {
                         .bold()
                 }
             }
-            .toolbar {
+            /*.toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {}) {
                         Image(systemName: "line.horizontal.3")
                     }
                     .accentColor(.black)
                 }
-            }
+            }*/
             .padding(.top, -40.0)
         }
     }
     
     //Funcion que trae el desgloce
-    func gastosFunc() -> Float {
-        var total: Float = 0.0
+    func gastosFunc() -> Double {
+        var total: Double = 0.0
         
         for gasto in viewModel.gastos ?? [] {
-            if let importeFinal = Float(gasto.importefinal) {
+            if let importeFinal = Double(gasto.importefinal) {
                 total += importeFinal
             } else {
                 print("No se pudo convertir '\(gasto.importefinal)' a Float.")
@@ -134,12 +145,6 @@ struct Gastos: View {
         }
         
         return total
-    }
-    
-    func callMethodGastos(){
-        DispatchQueue.global(qos: .background).async {
-            viewModel.fetchGastosData(date: date)
-        }
     }
 }
 
