@@ -14,6 +14,7 @@ final class ViewModel: ObservableObject {
     @Published var totales: [TotalVentasData]?
     @Published var gastos: [GastosData]?
     @Published var traspasos: [TraspasosData]?
+    @Published var pagosOtrasFechas: [PagosOtrasFechas]?
     @Published var delicias: [DeliciasData]?
     
     //Hace el llamdado de cada metodo
@@ -22,6 +23,7 @@ final class ViewModel: ObservableObject {
         fetchTotalesVentasData(date: date)
         fetchGastosData(date: date)
         fetchTraspasosData(date: date)
+        fetchPagosOtrasFechasData(date: date)
         fetchDeliciasData(date: date)
     }
     
@@ -89,6 +91,24 @@ final class ViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self?.traspasos = decodedData
                         //print(self?.traspasos ?? "null")
+                    }
+                } catch {
+                    print("Error decoding data: \(error)")
+                }
+            }
+        }
+    }
+    
+    //Decodificando los datos JSON de la API de la opcion 46 Traspasos
+    func fetchPagosOtrasFechasData(date: String){
+        APIManager.requestPagosOtrasFechasAPI(withOption: "77", parameterKey: "fecha", date: date){ [weak self] data, error in
+            if let data = data {
+                do {
+                    //Decidifca los datos que vienen en formato JSON
+                    let decodedData = try JSONDecoder().decode([PagosOtrasFechas].self, from: data)
+                    DispatchQueue.main.async {
+                        self?.pagosOtrasFechas = decodedData
+                        //print(self?.pagosOtrasFechas ?? "null")
                     }
                 } catch {
                     print("Error decoding data: \(error)")

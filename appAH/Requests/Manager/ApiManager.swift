@@ -105,4 +105,19 @@ class APIManager {
             }
         }
     }
+    
+    //Verificando los datos JSON de la API para la opcion 46 Traspasos
+    static func requestPagosOtrasFechasAPI(withOption option: String, parameterKey: String, date: String, completion: @escaping (Data?, Error?) -> Void) {
+        
+        let parameters = "opcion=\(option)&\(parameterKey)=\(date)"
+        
+        APIManager.requestData(withParameters: parameters) { result in
+            switch result {
+            case .success(let data):
+                completion(data, nil)
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
 }

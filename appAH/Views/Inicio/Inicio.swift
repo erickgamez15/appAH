@@ -175,13 +175,6 @@ struct Inicio: View {
                                     
                                     Divider()
                                 }
-                            
-                                HStack{
-                                    Label("Delicias: ", systemImage: "bag.badge.plus")
-                                    Text("$\(deliciasVentasFunc(), specifier: "%.3f")")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                                .padding(.vertical, 5)
                                 
                                 HStack{
                                     Label("Efectivo: ", systemImage: "dollarsign")
@@ -233,8 +226,15 @@ struct Inicio: View {
                                 .padding(.vertical, 5)
                                 
                                 HStack{
+                                    Label("Delicias: ", systemImage: "bag.badge.plus")
+                                    Text("$\(deliciasVentasFunc(), specifier: "%.3f")")
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
+                                .padding(.vertical, 5)
+                                
+                                HStack{
                                     Label("Pagos de notas de otras fechas: ", systemImage: "calendar")
-                                    Text("$")
+                                    Text("$\(pagosOtrasFechasFunc(), specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 5)
@@ -377,6 +377,21 @@ struct Inicio: View {
         return totalVentaDelicia
     }
     
+    //Trae el valor de la venta diaria de Delicias
+    func pagosOtrasFechasFunc() -> Double {
+        var otrosPagos: Double = 0.0
+       
+        for otroPago in viewModel.pagosOtrasFechas ?? [] {
+            if let totalPago = Double(otroPago.IMPORTECAJA) {
+                otrosPagos += totalPago
+            } else {
+                print("No se pudo convertir '\(otroPago.IMPORTECAJA)' a Double.")
+            }
+        }
+        
+        return otrosPagos
+    }
+    
     //Trae el valor de venta total de AH
     func totalVentasFunc() -> Double{
         var totalVentas: Double = 0.0
@@ -390,8 +405,8 @@ struct Inicio: View {
             }
         }
         
-        //Suma de la venta total de AH + Delicias
-        total = totalVentas + deliciasVentasFunc()
+        //Suma de la venta total de AH + Delicias + Pagos Otras Fechas
+        total = totalVentas + deliciasVentasFunc() + pagosOtrasFechasFunc()
         
         return total
     }

@@ -52,6 +52,15 @@ struct TraspasosData: Decodable, Identifiable{
     var XSOLICITA: String
 }
 
+//Model para los datos provenientes de la api en la opcion 77
+struct PagosOtrasFechas: Decodable, Identifiable{
+    var id: String { SERIEID }
+    var SERIEID: String
+    var SERNOMBRE: String
+    var FECHA: String
+    var IMPORTECAJA: String
+}
+
 //Model para los datos provenientes de la api opcion 100
 struct DeliciasData: Decodable, Identifiable{
     var id: String { IDSERIE }
