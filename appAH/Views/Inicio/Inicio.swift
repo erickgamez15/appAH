@@ -444,7 +444,7 @@ struct Inicio: View {
         
         //Diccionario
         let typeMapping: [String: Int] = [
-            "IMPORTE IMPORTE GASTOS": 0,
+            "IMPORTE GASTOS": 0,
             "IMPORTE DEVOLUCIONES O CANCELACIONES": 1,
             "IMPORTE SUELDOS": 2,
             "IMPORTE VALES": 3,
