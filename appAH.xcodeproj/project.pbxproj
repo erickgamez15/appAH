@@ -140,8 +140,8 @@
 		88929A382A8D7BFA001507E1 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				888D49082A90278D0057CC8B /* Manager */,
 				88ADE0762A8EAC4E006BFA3A /* Models */,
+				888D49082A90278D0057CC8B /* Manager */,
 				888749562A8BE20F00761745 /* ViewModel.swift */,
 			);
 			path = Requests;

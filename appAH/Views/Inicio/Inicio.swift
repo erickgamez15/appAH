@@ -162,6 +162,7 @@ struct Inicio: View {
                                 .padding(.bottom, 5.0)
                                 .padding(.top, 30)
                         ){
+                            let totalArray = desgloceEntradasFunc()
                             VStack{
                                 VStack{
                                     HStack{
@@ -184,56 +185,56 @@ struct Inicio: View {
                                 
                                 HStack{
                                     Label("Efectivo: ", systemImage: "dollarsign")
-                                    Text("value")
+                                    Text("$\(totalArray[0], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 5)
                                 
                                 HStack{
                                     Label("Tarjetas: ", systemImage: "creditcard")
-                                    Text("value")
+                                    Text("$\(totalArray[1], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 5)
                                 
                                 HStack{
                                     Label("Créditos: ", systemImage: "percent")
-                                    Text("value")
+                                    Text("$\(totalArray[2], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 5)
                                 
                                 HStack{
                                     Label("Monedas: ", systemImage: "dollarsign.circle")
-                                    Text("value")
+                                    Text("$\(totalArray[3], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 5)
                                 
                                 HStack{
                                     Label("Transferencia: ", systemImage: "arrow.right.arrow.left")
-                                    Text("value")
+                                    Text("$\(totalArray[4], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 5)
                                 
                                 HStack{
                                     Label("Cheques: ", systemImage: "doc.text")
-                                    Text("value")
+                                    Text("$\(totalArray[5], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 5)
                                 
                                 HStack{
                                     Label("Otros: ", systemImage: "questionmark.circle")
-                                    Text("value")
+                                    Text("$\(totalArray[6], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 5)
                                 
                                 HStack{
                                     Label("Pagos de notas de otras fechas: ", systemImage: "calendar")
-                                    Text("value")
+                                    Text("$")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 5)
@@ -404,6 +405,33 @@ struct Inicio: View {
                 total += importeFinal
             } else {
                 print("No se pudo convertir '\(gasto.importefinal)' a Float.")
+            }
+        }
+        
+        return total
+    }
+    
+    //Funcion que desgloca cada movimiento en las entradas
+    func desgloceEntradasFunc() -> [Double]{
+        var total: [Double] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        
+        //Diccionario
+        let typeMapping: [String: Int] = [
+            "DEPOSITO EFECTIVO": 0,
+            "IMPORTE EFECTIVO": 0,
+            "IMPORTE TARJETAS": 1,
+            "IMPORTE TARJETA": 1,
+            "IMPORTE CREDITO": 2,
+            "IMPORTE MONEDAS": 3,
+            "IMPORTE TRANSFERENCIAS": 4,
+            "IMPORTE TRASFERENCIAS": 4,
+            "IMPORTE CHEQUES": 5,
+            "IMPORTE OTROS": 6,
+        ]
+        
+        for desgloce in viewModel.desgloce ?? [] {
+            if let index = typeMapping[desgloce.tipooper] {
+                total[index] += Double(desgloce.totalcajero) ?? 0
             }
         }
         
