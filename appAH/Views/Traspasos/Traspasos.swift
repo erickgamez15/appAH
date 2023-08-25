@@ -98,7 +98,7 @@ struct Traspasos: View {
                                 .padding(.top, 20)
                         ){
                             ForEach(viewModel.traspasos ?? []) { traspaso in
-                                CardsTraspasos(nota: "\(traspaso.NOTA)", solicita: "\(traspaso.XSOLICITA)")
+                                CardsTraspasos(nota: "\(traspaso.NOTA)", solicita: "\(traspaso.XSOLICITA)", docid: "\(traspaso.DOCID)")
                             }
                         }
                         .padding(.bottom)

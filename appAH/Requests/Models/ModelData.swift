@@ -52,6 +52,17 @@ struct TraspasosData: Decodable, Identifiable{
     var XSOLICITA: String
 }
 
+//Model para los datos provenientes de la api en la opcion 50
+struct TablaData: Decodable, Identifiable{
+    var id: String { DESDOCID }
+    var DESDOCID: String
+    var DESCANTIDAD: String
+    var UNIDAD: String
+    var DESCRIPCIO: String
+    var UBICACION: String
+    var CLAVE: String
+}
+
 //Model para los datos provenientes de la api en la opcion 77
 struct PagosOtrasFechas: Decodable, Identifiable{
     var id: String { SERIEID }

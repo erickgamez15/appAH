@@ -14,6 +14,7 @@ final class ViewModel: ObservableObject {
     @Published var totales: [TotalVentasData]?
     @Published var gastos: [GastosData]?
     @Published var traspasos: [TraspasosData]?
+    @Published var tabla: [TablaData]?
     @Published var pagosOtrasFechas: [PagosOtrasFechas]?
     @Published var delicias: [DeliciasData]?
     
@@ -99,7 +100,25 @@ final class ViewModel: ObservableObject {
         }
     }
     
-    //Decodificando los datos JSON de la API de la opcion 46 Traspasos
+    //Decodificando los datos JSON de la API de la opcion 50 Tabla
+    func fetchTablaData(docid: String){
+        APIManager.requestTablaAPI(withOption: "50", parameterKey: "docid", docid: docid){ [weak self] data, error in
+            if let data = data {
+                do {
+                    //Decidifca los datos que vienen en formato JSON
+                    let decodedData = try JSONDecoder().decode([TablaData].self, from: data)
+                    DispatchQueue.main.async {
+                        self?.tabla = decodedData
+                        //print(self?.traspasos ?? "null")
+                    }
+                } catch {
+                    print("Error decoding data: \(error)")
+                }
+            }
+        }
+    }
+    
+    //Decodificando los datos JSON de la API de la opcion 77 PagosOtrasFechas
     func fetchPagosOtrasFechasData(date: String){
         APIManager.requestPagosOtrasFechasAPI(withOption: "77", parameterKey: "fecha", date: date){ [weak self] data, error in
             if let data = data {

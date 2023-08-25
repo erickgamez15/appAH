@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct CardsTraspasos: View {
     
+    @StateObject private var viewModel = ViewModel()
+    
     var nota: String
     var solicita: String
+    var docid: String
+    
+    @State private var showTable = false
     
     var body: some View {
         VStack{
@@ -30,7 +36,8 @@ struct CardsTraspasos: View {
             .bold()
             .foregroundColor(.cyan)
             
-            /*Button(action: {
+            Button(action: {
+                viewModel.fetchTablaData(docid: docid)
                 showTable.toggle()
             }) {
                 Image(systemName: "chevron.down")
@@ -38,7 +45,7 @@ struct CardsTraspasos: View {
             .bold()
             .padding(.top, 1)
             .foregroundColor(.red)
-            .cornerRadius(5)*/
+            .cornerRadius(5)
         }
         .padding()
         .padding(.horizontal)
@@ -47,24 +54,26 @@ struct CardsTraspasos: View {
         .background(Color.white)
         .cornerRadius(20)
         
-        /*if showTable {
+        if showTable {
             Group{
                 Section{
-                    Table() // Llama a la vista de la tabla
+                    ForEach(viewModel.tabla ?? []){ tb in
+                        if (docid == tb.DESDOCID){
+                            Table(tableData: [("\(tb.DESCANTIDAD)", "\(tb.DESCRIPCIO)")])
+                        }
+                    }
                 }
-                .shadow(color: .black.opacity(0.3), radius: 5)
                 .padding(.top, 1)
             }
-        }*/
+        }
     }
+    
+    
 }
 
-/*struct Table: View{
+struct Table: View{
     
-    let tableData: [(cantidad: String, descripcion: String)] = [
-        (cantidad: "1.54 KG", descripcion: "LONGANIZA CHILACTECA"),
-        (cantidad: "1.01 KG", descripcion: "QUESILLO CAMACHO"),
-    ]
+    let tableData: [(cantidad: String, descripcion: String)]
     
     var body: some View {
         VStack {
@@ -88,7 +97,7 @@ struct CardsTraspasos: View {
                     Text("\(data.cantidad)")
                         .frame(maxWidth: .infinity, alignment: .center)
                     Text(data.descripcion)
-                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         }
@@ -97,6 +106,7 @@ struct CardsTraspasos: View {
         .fontWeight(.light)
         .foregroundColor(.black)
         .background(Color.white)
-        .cornerRadius(20)
+        .overlay(Rectangle()
+            .stroke(Color .black.opacity(0.5), lineWidth: 3))
     }
-}*/
+}

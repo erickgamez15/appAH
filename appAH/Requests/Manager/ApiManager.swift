@@ -106,7 +106,22 @@ class APIManager {
         }
     }
     
-    //Verificando los datos JSON de la API para la opcion 46 Traspasos
+    //Verificando los datos JSON de la API para la opcion 50 Traspasos
+    static func requestTablaAPI(withOption option: String, parameterKey: String, docid: String, completion: @escaping (Data?, Error?) -> Void) {
+        
+        let parameters = "opcion=\(option)&\(parameterKey)=\(docid)"
+        
+        APIManager.requestData(withParameters: parameters) { result in
+            switch result {
+            case .success(let data):
+                completion(data, nil)
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    //Verificando los datos JSON de la API para la opcion 77 PagosOtrasFechas
     static func requestPagosOtrasFechasAPI(withOption option: String, parameterKey: String, date: String, completion: @escaping (Data?, Error?) -> Void) {
         
         let parameters = "opcion=\(option)&\(parameterKey)=\(date)"
