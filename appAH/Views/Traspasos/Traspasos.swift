@@ -59,7 +59,7 @@ struct Traspasos: View {
                                             viewModel.fetchData(date: date)
                                         } else {
                                             showAlert = true
-                                            alertMessage = "Seleccione una fecha"
+                                            alertMessage = "Seleccione una fecha anterior a \(fecha.formatDate(date: currentDate))"
                                         }
                                     }) {
                                         Image(systemName: "doc.text.magnifyingglass")

@@ -115,7 +115,7 @@ struct Inicio: View {
                             //VStack acomoda los elementos de manera vertical en una vista, miestras que HStack de manera horizontal
                             VStack{
                                 HStack {
-                                    Text("Ventas: ")
+                                    Text("Entradas: ")
                                     Text("$\(totalVentasFunc(), specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
@@ -125,8 +125,8 @@ struct Inicio: View {
                                 Divider() //Linea divisora
                                 
                                 HStack {
-                                    Text("Gastos: ")
-                                    Text("$\(gastosFunc(), specifier: "%.3f")")
+                                    Text("Salidas: ")
+                                    Text("$\(salidasTotalFunc(), specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 10)
@@ -136,7 +136,7 @@ struct Inicio: View {
                                 
                                 HStack {
                                     Text("Total final: ")
-                                    Text("$\(totalVentasFunc() - gastosFunc(), specifier: "%.3f")")
+                                    Text("$\(totalVentasFunc() - salidasTotalFunc(), specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.vertical, 10)
@@ -259,10 +259,11 @@ struct Inicio: View {
                                 .padding(.bottom, 5.0)
                                 .padding(.top, 30)
                         ){
+                            let totalArray = desgloceSalidasFunc()
                             VStack{
                                 HStack{
                                     Text("Total Salidas: ")
-                                    Text("$\(gastosFunc(), specifier: "%.3f")")
+                                    Text("$\(salidasTotalFunc(), specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .bold()
@@ -272,49 +273,49 @@ struct Inicio: View {
                                 
                                 HStack{
                                     Label("Gastos: ", systemImage: "dollarsign")
-                                    Text("value")
+                                    Text("$\(totalArray[0], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.bottom, 10)
                                 
                                 HStack{
                                     Label("Devoluciones Cancelaciones: ", systemImage: "arrow.counterclockwise")
-                                    Text("value")
+                                    Text("$\(totalArray[1], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.bottom, 10)
                                 
                                 HStack{
                                     Label("Sueldos: ", systemImage: "person.2")
-                                    Text("value")
+                                    Text("$\(totalArray[2], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.bottom, 10)
                                 
                                 HStack{
                                     Label("Vales: ", systemImage: "tag")
-                                    Text("value")
+                                    Text("$\(totalArray[3], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.bottom, 10)
                                 
                                 HStack{
                                     Label("Importe de Bonificación: ", systemImage: "doc.text")
-                                    Text("value")
+                                    Text("$\(totalArray[4], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.bottom, 10)
                                 
                                 HStack{
                                     Label("Suministros: ", systemImage: "cart")
-                                    Text("value")
+                                    Text("$\(totalArray[5], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.bottom, 10)
                                 
                                 HStack{
                                     Label("Préstamos: ", systemImage: "calendar")
-                                    Text("value")
+                                    Text("$\(totalArray[6], specifier: "%.3f")")
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                                 .padding(.bottom, 10)
@@ -411,21 +412,6 @@ struct Inicio: View {
         return total
     }
     
-    //Funcion que trae el total de Gastos
-    func gastosFunc() -> Double {
-        var total: Double = 0.0
-        
-        for gasto in viewModel.gastos ?? [] {
-            if let importeFinal = Double(gasto.importefinal) {
-                total += importeFinal
-            } else {
-                print("No se pudo convertir '\(gasto.importefinal)' a Float.")
-            }
-        }
-        
-        return total
-    }
-    
     //Funcion que desgloca cada movimiento en las entradas
     func desgloceEntradasFunc() -> [Double]{
         var total: [Double] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
@@ -448,6 +434,41 @@ struct Inicio: View {
             if let index = typeMapping[desgloce.tipooper] {
                 total[index] += Double(desgloce.totalcajero) ?? 0
             }
+        }
+        
+        return total
+    }
+    
+    //Funcion que desgloca cada movimiento en las entradas
+    func desgloceSalidasFunc() -> [Double]{
+        var total: [Double] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        
+        //Diccionario
+        let typeMapping: [String: Int] = [
+            "IMPORTE IMPORTE GASTOS": 0,
+            "IMPORTE DEVOLUCIONES O CANCELACIONES": 1,
+            "IMPORTE SUELDOS": 2,
+            "IMPORTE VALES": 3,
+            "IMPORTE BONIFICACION": 4,
+            "IMPORTE SUMINISTROS": 5,
+            "IMPORTE PRESTAMOS": 6,
+        ]
+        
+        for desgloce in viewModel.desgloce ?? [] {
+            if let index = typeMapping[desgloce.tipooper] {
+                total[index] += Double(desgloce.totalcajero) ?? 0
+            }
+        }
+        
+        return total
+    }
+    
+    //Funcion que trae el total de Gastos
+    func salidasTotalFunc() -> Double {
+        var total: Double = 0.0
+        
+        for salida in desgloceSalidasFunc(){
+            total += salida
         }
         
         return total
