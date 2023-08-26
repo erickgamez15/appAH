@@ -34,6 +34,7 @@ struct CardsTraspasos: View {
                 Text("\(solicita)")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Button(action: {
+                    viewModel.fetchImagenData(docid: docid)
                     viewModel.fetchTablaData(docid: docid)
                     tableData = viewModel.tabla?.map { tb in
                         return (cantidad: tb.DESCANTIDAD, unidad: tb.UNIDAD, descripcion: tb.DESCRIPCIO)
@@ -41,10 +42,10 @@ struct CardsTraspasos: View {
                     showTable.toggle()
                 }) {
                     if showTable {
-                        Image(systemName: "chevron.up")
+                        Image(systemName: "chevron.down")
                             .transition(.scale)
                     } else {
-                        Image(systemName: "chevron.down")
+                        Image(systemName: "chevron.right")
                             .transition(.scale)
                     }
                 }

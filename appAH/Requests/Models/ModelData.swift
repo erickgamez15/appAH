@@ -63,6 +63,13 @@ struct TablaData: Decodable, Identifiable{
     var CLAVE: String
 }
 
+struct ImagenTabla: Decodable, Identifiable{
+    var id: String { idCajasFotos }
+    var idCajasFotos: String
+    var imagen: String
+    var URL: String
+}
+
 //Model para los datos provenientes de la api en la opcion 77
 struct PagosOtrasFechas: Decodable, Identifiable{
     var id: String { SERIEID }

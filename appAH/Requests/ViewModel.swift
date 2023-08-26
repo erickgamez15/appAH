@@ -15,6 +15,7 @@ final class ViewModel: ObservableObject {
     @Published var gastos: [GastosData]?
     @Published var traspasos: [TraspasosData]?
     @Published var tabla: [TablaData]?
+    @Published var imagen: [ImagenTabla]?
     @Published var pagosOtrasFechas: [PagosOtrasFechas]?
     @Published var delicias: [DeliciasData]?
     
@@ -110,6 +111,24 @@ final class ViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self?.tabla = decodedData
                         //print(self?.tabla ?? "null")
+                    }
+                } catch {
+                    print("Error decoding data: \(error)")
+                }
+            }
+        }
+    }
+    
+    //Decodificando los datos JSON de la API de la opcion 50 Tabla
+    func fetchImagenData(docid: String){
+        APIManager.requestImagenAPI(withOption: "49", parameterKey: "docid", docid: docid){ [weak self] data, error in
+            if let data = data {
+                do {
+                    //Decidifca los datos que vienen en formato JSON
+                    let decodedData = try JSONDecoder().decode([ImagenTabla].self, from: data)
+                    DispatchQueue.main.async {
+                        self?.imagen = decodedData
+                        //print(self?.imagen ?? "null")
                     }
                 } catch {
                     print("Error decoding data: \(error)")
