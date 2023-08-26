@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		881A4A1D2A9113160081F77D /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A4A1C2A9113160081F77D /* ModelData.swift */; };
+		884C5E612A9A7AA200B1B30A /* Tabla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884C5E602A9A7AA200B1B30A /* Tabla.swift */; };
 		888749572A8BE20F00761745 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888749562A8BE20F00761745 /* ViewModel.swift */; };
 		8887495A2A8C06DF00761745 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888749592A8C06DF00761745 /* MainView.swift */; };
 		8887495C2A8C0B1000761745 /* Gastos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887495B2A8C0B1000761745 /* Gastos.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		881A4A1C2A9113160081F77D /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		884C5E602A9A7AA200B1B30A /* Tabla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabla.swift; sourceTree = "<group>"; };
 		888749562A8BE20F00761745 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		888749582A8BE8FA00761745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		888749592A8C06DF00761745 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				8889169D2A8BDA66004D0D2F /* Traspasos.swift */,
 				88929A322A8D4552001507E1 /* CardsTraspasos.swift */,
+				884C5E602A9A7AA200B1B30A /* Tabla.swift */,
 			);
 			path = Traspasos;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				8887495A2A8C06DF00761745 /* MainView.swift in Sources */,
 				8889169E2A8BDA66004D0D2F /* Traspasos.swift in Sources */,
 				8889168C2A8BDA33004D0D2F /* appAHApp.swift in Sources */,
+				884C5E612A9A7AA200B1B30A /* Tabla.swift in Sources */,
 				88929A312A8D4365001507E1 /* CardsGastos.swift in Sources */,
 				8887495C2A8C0B1000761745 /* Gastos.swift in Sources */,
 				88929A332A8D4552001507E1 /* CardsTraspasos.swift in Sources */,
