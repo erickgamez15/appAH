@@ -54,7 +54,7 @@ struct TraspasosData: Decodable, Identifiable{
 
 //Model para los datos provenientes de la api en la opcion 50
 struct TablaData: Decodable, Identifiable{
-    var id: String { DESDOCID }
+    var id: String { CLAVE }
     var DESDOCID: String
     var DESCANTIDAD: String
     var UNIDAD: String

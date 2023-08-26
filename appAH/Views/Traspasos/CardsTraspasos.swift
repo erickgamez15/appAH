@@ -5,8 +5,8 @@
 //  Created by Erick Gámez Sánchez on 16/08/23.
 //
 
-import SwiftUI
 import Foundation
+import SwiftUI
 
 struct CardsTraspasos: View {
     
@@ -59,7 +59,7 @@ struct CardsTraspasos: View {
                 Section{
                     ForEach(viewModel.tabla ?? []){ tb in
                         if (docid == tb.DESDOCID){
-                            Table(tableData: [("\(tb.DESCANTIDAD)", "\(tb.DESCRIPCIO)")])
+                            Tabla(docId: tb.DESDOCID,tableData: [(cantidad: "\(tb.DESCANTIDAD)", "\(tb.UNIDAD)", "\(tb.DESCRIPCIO)")])
                         }
                     }
                 }
@@ -67,13 +67,12 @@ struct CardsTraspasos: View {
             }
         }
     }
-    
-    
 }
 
-struct Table: View{
+struct Tabla: View{
     
-    let tableData: [(cantidad: String, descripcion: String)]
+    var docId: String
+    let tableData: [(cantidad: String ,unidad: String, descripcion: String)]
     
     var body: some View {
         VStack {
@@ -94,7 +93,7 @@ struct Table: View{
                 Divider()
                     .background(Color.black)
                 HStack {
-                    Text("\(data.cantidad)")
+                    Text("\(data.cantidad) \(data.unidad)")
                         .frame(maxWidth: .infinity, alignment: .center)
                     Text(data.descripcion)
                         .frame(maxWidth: .infinity, alignment: .leading)

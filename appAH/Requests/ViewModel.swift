@@ -109,7 +109,7 @@ final class ViewModel: ObservableObject {
                     let decodedData = try JSONDecoder().decode([TablaData].self, from: data)
                     DispatchQueue.main.async {
                         self?.tabla = decodedData
-                        //print(self?.traspasos ?? "null")
+                        //print(self?.tabla ?? "null")
                     }
                 } catch {
                     print("Error decoding data: \(error)")
