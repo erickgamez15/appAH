@@ -34,7 +34,7 @@ struct CardsTraspasos: View {
                 Text("\(solicita)")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Button(action: {
-                    viewModel.fetchImagenData(docid: docid)
+                    //viewModel.fetchImagenData(docid: docid) Manda a llamar a la funcion de Traer imagenes, pero aun falta implementar la funcionalidad
                     viewModel.fetchTablaData(docid: docid)
                     tableData = viewModel.tabla?.map { tb in
                         return (cantidad: tb.DESCANTIDAD, unidad: tb.UNIDAD, descripcion: tb.DESCRIPCIO)
