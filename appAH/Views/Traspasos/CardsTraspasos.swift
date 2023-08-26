@@ -93,8 +93,13 @@ struct Tabla: View{
                 Divider()
                     .background(Color.black)
                 HStack {
-                    Text("\(data.cantidad) \(data.unidad)")
-                        .frame(maxWidth: .infinity, alignment: .center)
+                    if let cantidadDouble = Double(data.cantidad) {
+                        Text("\(cantidadDouble, specifier: "%.3f") \(data.unidad)")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    } else {
+                        Text("Invalid")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
                     Text(data.descripcion)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
