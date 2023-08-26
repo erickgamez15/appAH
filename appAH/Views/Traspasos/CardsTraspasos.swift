@@ -16,6 +16,7 @@ struct CardsTraspasos: View {
     var solicita: String
     var docid: String
     
+    @State private var tableData: [(cantidad: String, unidad: String, descripcion: String)] = []
     @State private var showTable = false
     
     var body: some View {
@@ -32,20 +33,22 @@ struct CardsTraspasos: View {
                 Text("Solicita: ")
                 Text("\(solicita)")
                     .frame(maxWidth: .infinity, alignment: .leading)
+                Button(action: {
+                    viewModel.fetchTablaData(docid: docid)
+                    tableData = viewModel.tabla?.map { tb in
+                        return (cantidad: tb.DESCANTIDAD, unidad: tb.UNIDAD, descripcion: tb.DESCRIPCIO)
+                    } ?? []
+                    showTable.toggle()
+                }) {
+                    Image(systemName: "chevron.down")
+                }
+                .bold()
+                .padding(.top, 1)
+                .foregroundColor(.red)
+                .cornerRadius(5)
             }
             .bold()
             .foregroundColor(.cyan)
-            
-            Button(action: {
-                viewModel.fetchTablaData(docid: docid)
-                showTable.toggle()
-            }) {
-                Image(systemName: "chevron.down")
-            }
-            .bold()
-            .padding(.top, 1)
-            .foregroundColor(.red)
-            .cornerRadius(5)
         }
         .padding()
         .padding(.horizontal)
@@ -55,15 +58,8 @@ struct CardsTraspasos: View {
         .cornerRadius(20)
         
         if showTable {
-            Group{
-                Section{
-                    ForEach(viewModel.tabla ?? []){ tb in
-                        if (docid == tb.DESDOCID){
-                            Tabla(docId: tb.DESDOCID,tableData: [(cantidad: "\(tb.DESCANTIDAD)", "\(tb.UNIDAD)", "\(tb.DESCRIPCIO)")])
-                        }
-                    }
-                }
-                .padding(.top, 1)
+            if let tabla = viewModel.tabla {
+                Tabla(tabla: tabla)
             }
         }
     }
@@ -71,16 +67,15 @@ struct CardsTraspasos: View {
 
 struct Tabla: View{
     
-    var docId: String
-    let tableData: [(cantidad: String ,unidad: String, descripcion: String)]
+    var tabla: [TablaData]
     
     var body: some View {
         VStack {
-            //Encabezados de la columna
+            // Encabezados de la columna
             HStack {
                 Text("Cantidad")
                     .frame(maxWidth: .infinity, alignment: .center)
-                Divider() //Linea divisora
+                Divider()
                     .background(Color.black)
                 Text("Descripción")
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -89,18 +84,17 @@ struct Tabla: View{
             .font(.headline)
             
             // Filas de la tabla
-            ForEach(tableData, id: \.descripcion) { data in
+            ForEach(tabla, id: \.CLAVE) { tb in
                 Divider()
                     .background(Color.black)
                 HStack {
-                    if let cantidadDouble = Double(data.cantidad) {
-                        Text("\(cantidadDouble, specifier: "%.3f") \(data.unidad)")
-                            .frame(maxWidth: .infinity, alignment: .center)
-                    } else {
-                        Text("Invalid")
+                    if let cantidadDouble = Double(tb.DESCANTIDAD) {
+                        Text("\(cantidadDouble, specifier: "%.3f") \(tb.UNIDAD)")
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    Text(data.descripcion)
+                    Divider()
+                        .background(Color.black)
+                    Text(tb.DESCRIPCIO)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
@@ -111,6 +105,6 @@ struct Tabla: View{
         .foregroundColor(.black)
         .background(Color.white)
         .overlay(Rectangle()
-            .stroke(Color .black.opacity(0.5), lineWidth: 3))
+            .stroke(Color.black.opacity(0.5), lineWidth: 3))
     }
 }
