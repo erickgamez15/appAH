@@ -42,8 +42,10 @@ struct CardsTraspasos: View {
                 }) {
                     if showTable {
                         Image(systemName: "chevron.up")
+                            .transition(.scale)
                     } else {
                         Image(systemName: "chevron.down")
+                            .transition(.scale)
                     }
                 }
                 .bold()
